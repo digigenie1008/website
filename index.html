@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiGenie | Digital Growth Agency</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+    <!-- Custom Config & Styles -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#00FF6A',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-glow': 'pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+        }
+        ::selection {
+            background-color: #00FF6A;
+            color: #000;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00FF6A;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 10px rgba(0, 255, 106, 0.2); }
+            50% { box-shadow: 0 0 25px rgba(0, 255, 106, 0.5); }
+        }
+        
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden font-sans antialiased">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 py-6">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="text-2xl font-bold tracking-tighter flex items-center gap-2 select-none cursor-pointer" onclick="window.scrollTo(0,0)">
+                <i data-lucide="zap" class="w-6 h-6 text-neon fill-neon"></i>
+                <span>DIGI<span class="text-neon">GENIE</span></span>
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+                <a href="#services" class="hover:text-neon transition-colors">Services</a>
+                <a href="#process" class="hover:text-neon transition-colors">Process</a>
+                <a href="#why-us" class="hover:text-neon transition-colors">Why Us</a>
+                <a href="#contact" class="px-5 py-2 border border-neon text-neon rounded hover:bg-neon hover:text-black transition-all duration-300 font-bold">
+                    Start Growing
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
+                <i data-lucide="menu" class="w-8 h-8"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-black/95 border-b border-white/10 p-6 flex-col gap-4 text-center">
+            <a href="#services" class="text-lg hover:text-neon py-2 block mobile-link">Services</a>
+            <a href="#process" class="text-lg hover:text-neon py-2 block mobile-link">Process</a>
+            <a href="#why-us" class="text-lg hover:text-neon py-2 block mobile-link">Why Us</a>
+            <a href="#contact" class="text-neon font-bold py-2 block mobile-link">Contact Us</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop" 
+                 alt="Futuristic Workspace" 
+                 class="w-full h-full object-cover opacity-40">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center">
+            <div class="text-left space-y-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neon/10 border border-neon/30 text-neon text-xs font-bold tracking-widest uppercase">
+                    <span class="w-2 h-2 rounded-full bg-neon animate-pulse"></span>
+                    Future-Ready Agency
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold leading-tight tracking-tight text-white">
+                    We Build <br/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon to-emerald-600">
+                        Digital Empires.
+                    </span>
+                </h1>
+                <p class="text-gray-400 text-lg md:text-xl max-w-lg leading-relaxed">
+                    Elevate your business with high-converting websites, dominant social strategies, and branding that demands attention.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                    <a href="#contact" class="px-8 py-4 bg-neon text-black font-bold rounded hover:bg-white hover:shadow-[0_0_20px_rgba(0,255,106,0.4)] transition-all duration-300 flex items-center justify-center gap-2 group">
+                        Book Free Consultation
+                        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                    <a href="#services" class="px-8 py-4 border border-white/20 text-white rounded hover:bg-white/10 transition-all duration-300 text-center">
+                        Explore Services
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Abstract Visual -->
+            <div class="hidden md:flex justify-center relative">
+                 <div class="absolute inset-0 bg-neon blur-[100px] opacity-20"></div>
+                 <div class="relative z-10 border border-white/10 bg-white/5 backdrop-blur-sm p-6 rounded-2xl max-w-sm ml-auto rotate-3 hover:rotate-0 transition-transform duration-500">
+                    <div class="flex justify-between items-center mb-4 border-b border-white/10 pb-4">
+                      <span class="text-sm text-gray-400">Monthly Growth</span>
+                      <span class="text-neon font-bold">+148%</span>
+                    </div>
+                    <div class="space-y-3">
+                      <div class="h-2 bg-white/10 rounded-full overflow-hidden">
+                        <div class="h-full bg-neon w-[70%]"></div>
+                      </div>
+                      <div class="h-2 bg-white/10 rounded-full overflow-hidden">
+                         <div class="h-full bg-neon w-[90%]"></div>
+                      </div>
+                      <div class="h-2 bg-white/10 rounded-full overflow-hidden">
+                         <div class="h-full bg-neon w-[50%]"></div>
+                      </div>
+                    </div>
+                    <div class="mt-6 flex justify-between items-center text-xs text-gray-500">
+                      <div class="flex -space-x-2">
+                        <div class="w-8 h-8 rounded-full bg-gray-700 border border-black"></div>
+                        <div class="w-8 h-8 rounded-full bg-gray-600 border border-black"></div>
+                        <div class="w-8 h-8 rounded-full bg-gray-500 border border-black"></div>
+                      </div>
+                      <span>Active Clients</span>
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-black relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Our <span class="text-neon">Expertise</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Full-stack digital solutions designed to position your brand as a market leader.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Service 1 -->
+                <div class="group p-8 border border-white/10 rounded-xl hover:border-neon hover:bg-white/5 transition-all duration-300 hover:-translate-y-2">
+                    <div class="mb-6 p-4 bg-white/5 rounded-lg w-fit group-hover:bg-neon/20 transition-colors">
+                        <i data-lucide="monitor" class="w-8 h-8 text-neon"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 group-hover:text-neon transition-colors">Website Building</h3>
+                    <p class="text-gray-400 leading-relaxed text-sm">Modern, responsive, fast business websites that convert visitors into paying customers.</p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="group p-8 border border-white/10 rounded-xl hover:border-neon hover:bg-white/5 transition-all duration-300 hover:-translate-y-2">
+                    <div class="mb-6 p-4 bg-white/5 rounded-lg w-fit group-hover:bg-neon/20 transition-colors">
+                        <i data-lucide="video" class="w-8 h-8 text-neon"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 group-hover:text-neon transition-colors">Video Marketing</h3>
+                    <p class="text-gray-400 leading-relaxed text-sm">Short-form, high-impact videos optimized for Instagram Reels, TikTok, and Ads.</p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="group p-8 border border-white/10 rounded-xl hover:border-neon hover:bg-white/5 transition-all duration-300 hover:-translate-y-2">
+                    <div class="mb-6 p-4 bg-white/5 rounded-lg w-fit group-hover:bg-neon/20 transition-colors">
+                        <i data-lucide="instagram" class="w-8 h-8 text-neon"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 group-hover:text-neon transition-colors">IG Profile Optimization</h3>
+                    <p class="text-gray-400 leading-relaxed text-sm">Professional bio, highlights, branding, and a growth-ready profile structure.</p>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="group p-8 border border-white/10 rounded-xl hover:border-neon hover:bg-white/5 transition-all duration-300 hover:-translate-y-2">
+                    <div class="mb-6 p-4 bg-white/5 rounded-lg w-fit group-hover:bg-neon/20 transition-colors">
+                        <i data-lucide="layout" class="w-8 h-8 text-neon"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 group-hover:text-neon transition-colors">Social Content Design</h3>
+                    <p class="text-gray-400 leading-relaxed text-sm">Scroll-stopping creatives, reels covers, and consistent brand visual identity.</p>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="group p-8 border border-white/10 rounded-xl hover:border-neon hover:bg-white/5 transition-all duration-300 hover:-translate-y-2">
+                    <div class="mb-6 p-4 bg-white/5 rounded-lg w-fit group-hover:bg-neon/20 transition-colors">
+                        <i data-lucide="map-pin" class="w-8 h-8 text-neon"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 group-hover:text-neon transition-colors">Google Business (GMB)</h3>
+                    <p class="text-gray-400 leading-relaxed text-sm">Rank locally, get discovered on Maps, and attract nearby customers instantly.</p>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="group p-8 border border-white/10 rounded-xl hover:border-neon hover:bg-white/5 transition-all duration-300 hover:-translate-y-2">
+                    <div class="mb-6 p-4 bg-white/5 rounded-lg w-fit group-hover:bg-neon/20 transition-colors">
+                        <i data-lucide="trending-up" class="w-8 h-8 text-neon"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 group-hover:text-neon transition-colors">Digital Growth Strategy</h3>
+                    <p class="text-gray-400 leading-relaxed text-sm">Lead generation, business listings, SEO foundations, and growth consultation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="why-us" class="py-24 bg-[#050505] border-y border-white/5">
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-8 leading-tight">
+                    Why Smart Businesses <br/>
+                    Choose <span class="text-neon">DigiGenie</span>
+                </h2>
+                <div class="space-y-6">
+                    <div class="flex items-center gap-4">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-neon flex-shrink-0"></i>
+                        <span class="text-lg text-gray-200">Modern, Future-Proof Designs</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-neon flex-shrink-0"></i>
+                        <span class="text-lg text-gray-200">Business-First Approach</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-neon flex-shrink-0"></i>
+                        <span class="text-lg text-gray-200">Lightning Fast Delivery</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-neon flex-shrink-0"></i>
+                        <span class="text-lg text-gray-200">End-to-End Digital Support</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-neon flex-shrink-0"></i>
+                        <span class="text-lg text-gray-200">Affordable Scaling Plans</span>
+                    </div>
+                </div>
+            </div>
+            <div class="relative">
+                <!-- Visual element -->
+                <div class="relative z-10 bg-gradient-to-br from-gray-900 to-black p-1 rounded-2xl border border-white/10 shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop" 
+                         alt="Abstract Tech" 
+                         class="rounded-xl opacity-60 w-full h-auto grayscale hover:grayscale-0 transition-all duration-700">
+                    <div class="absolute bottom-8 left-8 right-8 bg-black/80 backdrop-blur-md p-6 rounded-lg border border-neon/30">
+                        <div class="flex justify-between items-end">
+                            <div>
+                                <p class="text-gray-400 text-sm mb-1">Total Impact</p>
+                                <h4 className="text-2xl font-bold text-white">Exponential Growth</h4>
+                            </div>
+                            <i data-lucide="trending-up" class="w-10 h-10 text-neon"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Glow effect -->
+                <div class="absolute -inset-4 bg-neon blur-[60px] opacity-10 -z-10"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-24 bg-black">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Our <span class="text-neon">Process</span></h2>
+                <p class="text-gray-400">Simple, transparent, and effective.</p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Step 1 -->
+                <div class="relative group">
+                    <div class="text-6xl font-black text-white/5 mb-4 group-hover:text-neon/20 transition-colors">01</div>
+                    <h3 class="text-xl font-bold mb-2 text-white group-hover:text-neon transition-colors">Discovery</h3>
+                    <p class="text-sm text-gray-400">We analyze your business goals and target audience.</p>
+                    <div class="hidden md:block absolute top-8 left-1/2 w-full h-[1px] bg-gradient-to-r from-white/10 to-transparent -z-10"></div>
+                </div>
+                <!-- Step 2 -->
+                <div class="relative group">
+                    <div class="text-6xl font-black text-white/5 mb-4 group-hover:text-neon/20 transition-colors">02</div>
+                    <h3 class="text-xl font-bold mb-2 text-white group-hover:text-neon transition-colors">Strategy</h3>
+                    <p class="text-sm text-gray-400">We design a custom roadmap for your digital presence.</p>
+                    <div class="hidden md:block absolute top-8 left-1/2 w-full h-[1px] bg-gradient-to-r from-white/10 to-transparent -z-10"></div>
+                </div>
+                <!-- Step 3 -->
+                <div class="relative group">
+                    <div class="text-6xl font-black text-white/5 mb-4 group-hover:text-neon/20 transition-colors">03</div>
+                    <h3 class="text-xl font-bold mb-2 text-white group-hover:text-neon transition-colors">Build & Launch</h3>
+                    <p class="text-sm text-gray-400">We execute the design and development with precision.</p>
+                    <div class="hidden md:block absolute top-8 left-1/2 w-full h-[1px] bg-gradient-to-r from-white/10 to-transparent -z-10"></div>
+                </div>
+                <!-- Step 4 -->
+                <div class="relative group">
+                    <div class="text-6xl font-black text-white/5 mb-4 group-hover:text-neon/20 transition-colors">04</div>
+                    <h3 class="text-xl font-bold mb-2 text-white group-hover:text-neon transition-colors">Scale</h3>
+                    <p class="text-sm text-gray-400">We optimize for growth, leads, and ongoing performance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 relative overflow-hidden">
+        <!-- Decorative Background -->
+        <div class="absolute inset-0 bg-zinc-900">
+            <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-black to-transparent opacity-90"></div>
+            <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="glass-panel rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row">
+                
+                <!-- Text Side -->
+                <div class="p-10 md:p-16 md:w-1/2 flex flex-col justify-center border-b md:border-b-0 md:border-r border-white/10 bg-black/40">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                        Let's Grow <br/>
+                        <span class="text-neon">Your Business.</span>
+                    </h2>
+                    <p class="text-gray-400 mb-8 text-lg">
+                        Ready to dominate your market? Fill out the form and our team will get back to you with a custom strategy within 24 hours.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 text-gray-300">
+                            <div class="p-3 bg-white/5 rounded-full text-neon">
+                                <i data-lucide="smartphone" class="w-5 h-5"></i>
+                            </div>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                        <div class="flex items-center gap-4 text-gray-300">
+                            <div class="p-3 bg-white/5 rounded-full text-neon">
+                                <i data-lucide="send" class="w-5 h-5"></i>
+                            </div>
+                            <span>hello@digigenie.agency</span>
+                        </div>
+                        <div class="flex items-center gap-4 text-gray-300">
+                            <div class="p-3 bg-white/5 rounded-full text-neon">
+                                <i data-lucide="map-pin" class="w-5 h-5"></i>
+                            </div>
+                            <span>New York • London • Remote</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Side -->
+                <div class="p-10 md:p-16 md:w-1/2 bg-white/5 relative">
+                    <!-- Success Message Overlay -->
+                    <div id="successMessage" class="hidden absolute inset-0 flex flex-col items-center justify-center text-center p-6 bg-black/90 z-20">
+                        <div class="w-16 h-16 bg-neon/20 rounded-full flex items-center justify-center mb-4 text-neon">
+                            <i data-lucide="check-circle" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Message Sent!</h3>
+                        <p class="text-gray-400">We'll be in touch shortly to kickstart your growth.</p>
+                    </div>
+
+                    <form id="contactForm" class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Full Name</label>
+                            <input type="text" name="name" required class="w-full bg-black/50 border border-white/10 rounded-lg p-4 text-white focus:outline-none focus:border-neon transition-colors" placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Email Address</label>
+                            <input type="email" name="email" required class="w-full bg-black/50 border border-white/10 rounded-lg p-4 text-white focus:outline-none focus:border-neon transition-colors" placeholder="john@business.com">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Phone Number</label>
+                            <input type="tel" name="phone" required class="w-full bg-black/50 border border-white/10 rounded-lg p-4 text-white focus:outline-none focus:border-neon transition-colors" placeholder="+1 (555) 000-0000">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">How can we help?</label>
+                            <textarea rows="4" name="message" required class="w-full bg-black/50 border border-white/10 rounded-lg p-4 text-white focus:outline-none focus:border-neon transition-colors resize-none" placeholder="Tell us about your project..."></textarea>
+                        </div>
+                        <button type="submit" id="submitBtn" class="w-full bg-neon text-black font-bold py-4 rounded-lg hover:bg-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-white/10 py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <div class="flex items-center gap-2 mb-4 md:mb-0">
+                   <i data-lucide="zap" class="w-5 h-5 text-neon"></i>
+                   <span class="font-bold text-lg">DIGI<span class="text-neon">GENIE</span></span>
+                </div>
+                <div class="flex gap-6">
+                   <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-neon hover:text-black transition-colors">
+                     <i data-lucide="instagram" class="w-5 h-5"></i>
+                   </a>
+                   <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-neon hover:text-black transition-colors">
+                     <i data-lucide="globe" class="w-5 h-5"></i>
+                   </a>
+                   <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-neon hover:text-black transition-colors">
+                     <i data-lucide="video" class="w-5 h-5"></i>
+                   </a>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                 <p>&copy; <span id="year"></span> DigiGenie Agency. All rights reserved.</p>
+                 <div class="flex gap-6 mt-4 md:mt-0">
+                   <a href="#" class="hover:text-white">Privacy Policy</a>
+                   <a href="#" class="hover:text-white">Terms of Service</a>
+                 </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Set Current Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileIcon = menuBtn.querySelector('i'); // Access icon inside button
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex'); // Because we use flex-col
+            // Toggle Icon logic isn't strictly necessary with Lucide in static HTML easily, 
+            // but we can just leave the menu icon or swap classes if we wanted strictly.
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-black/90', 'backdrop-blur-md', 'border-b', 'border-white/10', 'py-4');
+                navbar.classList.remove('py-6');
+            } else {
+                navbar.classList.remove('bg-black/90', 'backdrop-blur-md', 'border-b', 'border-white/10', 'py-4');
+                navbar.classList.add('py-6');
+            }
+        });
+
+        // Form Handling
+        const form = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const successMessage = document.getElementById('successMessage');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Set Loading State
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+
+            const formData = new FormData(form);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                message: formData.get('message')
+            };
+
+            fetch('https://script.google.com/macros/s/AKfycbyglELIbVZN4uqqA2cRAGGBLSmGXDUsFu9rLn0LtuMYwqPhrPNSgY-Z85P_5tCBGe9l0g/exec', {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(() => {
+                // Show Success
+                successMessage.classList.remove('hidden');
+                form.reset();
+                
+                // Reset after 3 seconds
+                setTimeout(() => {
+                    successMessage.classList.add('hidden');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send Message';
+                }, 3000);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert("Something went wrong. Please try again.");
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Message';
+            });
+        });
+    </script>
+</body>
+</html>
