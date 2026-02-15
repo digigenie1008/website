@@ -4,271 +4,1300 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DigiGenie | Digital Growth Agency</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { 
-                        brandRed: '#FF3B30',
-                        brandBlue: '#007AFF',
-                        brandGreen: '#34C759',
-                        brandYellow: '#FFCC00',
-                        brandDark: '#1A1A1A'
-                    },
-                    fontFamily: { 
-                        sans: ['Outfit', 'sans-serif'],
-                        heading: ['Syncopate', 'sans-serif'],
-                    },
-                }
-            }
-        }
-    </script>
     <style>
-        body { background-color: #FFFFFF; color: #1A1A1A; overflow-x: hidden; font-family: 'Outfit', sans-serif; }
-        h1, h2, h3, .nav-logo { font-family: 'Syncopate', sans-serif; letter-spacing: -0.05em; }
-        ::selection { background-color: #007AFF; color: #fff; }
-        
-        .logo-gradient {
-            background: linear-gradient(to right, #FF3B30, #007AFF, #34C759, #FFCC00);
+        :root {
+            --red: #FF3B30;
+            --blue: #007AFF;
+            --green: #34C759;
+            --yellow: #FFCC00;
+            --dark: #080810;
+            --dark2: #0f0f1a;
+            --card: #111120;
+            --border: rgba(255,255,255,0.07);
+            --text-muted: rgba(255,255,255,0.4);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--dark);
+            color: #fff;
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Custom cursor */
+        .cursor {
+            width: 10px; height: 10px;
+            background: var(--blue);
+            border-radius: 50%;
+            position: fixed; z-index: 9999;
+            pointer-events: none;
+            transition: transform 0.1s ease;
+            mix-blend-mode: screen;
+        }
+        .cursor-ring {
+            width: 36px; height: 36px;
+            border: 1.5px solid rgba(0,122,255,0.5);
+            border-radius: 50%;
+            position: fixed; z-index: 9998;
+            pointer-events: none;
+            transition: transform 0.15s ease, width 0.3s, height 0.3s, border-color 0.3s;
+        }
+        body:has(a:hover) .cursor-ring,
+        body:has(button:hover) .cursor-ring {
+            width: 56px; height: 56px;
+            border-color: rgba(255,59,48,0.7);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--dark); }
+        ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 2px; }
+
+        /* Selection */
+        ::selection { background: var(--blue); color: #fff; }
+
+        /* === NAVBAR === */
+        nav {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+            padding: 20px 0;
+            transition: all 0.4s ease;
+        }
+        nav.scrolled {
+            background: rgba(8,8,16,0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 0;
+        }
+        .nav-inner {
+            max-width: 1280px; margin: 0 auto;
+            padding: 0 40px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo {
+            display: flex; align-items: center; gap: 12px;
+            text-decoration: none; cursor: none;
+        }
+        .logo-bars {
+            display: flex; gap: 3px; align-items: flex-end;
+        }
+        .logo-bars span {
+            width: 4px; border-radius: 2px;
+            display: block;
+            animation: barPulse 2s ease-in-out infinite;
+        }
+        .logo-bars span:nth-child(1) { height: 16px; background: var(--red); animation-delay: 0s; }
+        .logo-bars span:nth-child(2) { height: 22px; background: var(--blue); animation-delay: 0.2s; }
+        .logo-bars span:nth-child(3) { height: 14px; background: var(--green); animation-delay: 0.4s; }
+        @keyframes barPulse {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(0.6); }
+        }
+        .logo-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 24px;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.6) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        .logo-text .accent {
+            background: linear-gradient(135deg, var(--red), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .nav-links {
+            display: flex; align-items: center; gap: 36px;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-size: 11px; font-weight: 600;
+            letter-spacing: 2px; text-transform: uppercase;
+            color: var(--text-muted);
+            transition: color 0.3s;
+            cursor: none;
+        }
+        .nav-links a:hover { color: #fff; }
+        .nav-cta {
+            background: linear-gradient(135deg, var(--blue), #0055cc);
+            color: #fff !important;
+            padding: 10px 22px;
+            border-radius: 100px;
+            transition: all 0.3s !important;
+            box-shadow: 0 0 20px rgba(0,122,255,0.3);
+        }
+        .nav-cta:hover {
+            box-shadow: 0 0 35px rgba(0,122,255,0.6) !important;
+            transform: translateY(-1px);
+        }
 
-        .service-card { cursor: pointer; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); background: #fcfcfc; border: 1px solid rgba(0,0,0,0.05); }
-        .service-card:hover { transform: translateY(-10px); background: #ffffff; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06); border-color: #007AFF; }
-        
-        .step-line { background: linear-gradient(90deg, #FF3B30, #007AFF, #34C759, #FFCC00); opacity: 0.2; }
-        .modal-bg { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px); z-index: 100; }
+        /* === HERO === */
+        .hero {
+            min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
+            padding: 120px 40px 80px;
+        }
+
+        /* Animated background grid */
+        .hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(0,122,255,0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,122,255,0.06) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+            animation: gridDrift 20s linear infinite;
+        }
+        @keyframes gridDrift {
+            from { transform: translateY(0); }
+            to { transform: translateY(60px); }
+        }
+
+        /* Glow orbs */
+        .orb {
+            position: absolute; border-radius: 50%;
+            filter: blur(100px); opacity: 0.15;
+            pointer-events: none;
+        }
+        .orb-1 { width: 600px; height: 600px; background: var(--blue); top: -200px; left: -200px; animation: orbFloat1 15s ease-in-out infinite; }
+        .orb-2 { width: 500px; height: 500px; background: var(--red); bottom: -200px; right: -100px; animation: orbFloat2 18s ease-in-out infinite; }
+        .orb-3 { width: 300px; height: 300px; background: var(--green); top: 50%; left: 50%; transform: translate(-50%, -50%); animation: orbFloat3 12s ease-in-out infinite; }
+        @keyframes orbFloat1 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(60px, 40px); } }
+        @keyframes orbFloat2 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-40px, -60px); } }
+        @keyframes orbFloat3 { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.3); } }
+
+        .hero-inner {
+            max-width: 1000px; margin: 0 auto;
+            text-align: center; position: relative; z-index: 2;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            padding: 8px 18px; border-radius: 100px;
+            font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+            color: var(--text-muted); margin-bottom: 40px;
+            animation: fadeDown 0.8s ease forwards;
+        }
+        .hero-badge::before {
+            content: '';
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 8px var(--green);
+            animation: blink 2s ease-in-out infinite;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+
+        .hero-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(64px, 10vw, 140px);
+            line-height: 0.92;
+            letter-spacing: 2px;
+            margin-bottom: 28px;
+            animation: fadeUp 0.8s ease 0.2s both;
+        }
+        .hero-title .line2 {
+            display: block;
+            background: linear-gradient(135deg, var(--red) 0%, var(--blue) 50%, var(--green) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: gradShift 5s ease infinite, fadeUp 0.8s ease 0.3s both;
+        }
+        @keyframes gradShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        .hero-sub {
+            font-size: 18px; color: var(--text-muted);
+            max-width: 540px; margin: 0 auto 48px;
+            line-height: 1.7; font-weight: 300;
+            animation: fadeUp 0.8s ease 0.4s both;
+        }
+        .hero-buttons {
+            display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+            animation: fadeUp 0.8s ease 0.6s both;
+        }
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: linear-gradient(135deg, var(--blue), #0044bb);
+            color: #fff; text-decoration: none;
+            padding: 16px 36px; border-radius: 100px;
+            font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+            transition: all 0.3s;
+            box-shadow: 0 0 30px rgba(0,122,255,0.4);
+            cursor: none;
+        }
+        .btn-primary:hover {
+            box-shadow: 0 0 60px rgba(0,122,255,0.7);
+            transform: translateY(-3px);
+        }
+        .btn-outline {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: transparent;
+            color: #fff; text-decoration: none;
+            padding: 16px 36px; border-radius: 100px;
+            font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+            cursor: none;
+        }
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Hero stats row */
+        .hero-stats {
+            display: flex; justify-content: center; gap: 60px;
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+            animation: fadeUp 0.8s ease 0.8s both;
+        }
+        .hero-stat-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 44px; letter-spacing: 2px;
+            background: linear-gradient(135deg, #fff, rgba(255,255,255,0.6));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-stat-label {
+            font-size: 10px; font-weight: 600; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* === MARQUEE STRIP === */
+        .marquee-wrap {
+            overflow: hidden;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 18px 0;
+            background: rgba(255,255,255,0.02);
+        }
+        .marquee-track {
+            display: flex; gap: 60px;
+            animation: marquee 20s linear infinite;
+            white-space: nowrap;
+        }
+        .marquee-track:hover { animation-play-state: paused; }
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+        .marquee-item {
+            display: flex; align-items: center; gap: 12px;
+            font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+            color: var(--text-muted);
+        }
+        .marquee-dot { width: 6px; height: 6px; border-radius: 50%; }
+
+        /* === SECTION SHARED === */
+        section { padding: 100px 0; }
+        .section-inner { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+
+        .section-tag {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-family: 'DM Mono', monospace;
+            font-size: 10px; color: var(--blue);
+            letter-spacing: 2px; text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        .section-tag::before {
+            content: '//';
+            color: var(--text-muted);
+        }
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(42px, 6vw, 80px);
+            line-height: 0.95;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+        .section-title .colored { color: var(--blue); }
+        .section-sub {
+            font-size: 15px; color: var(--text-muted);
+            font-weight: 300; max-width: 500px;
+        }
+
+        /* === SERVICES === */
+        #services { background: var(--dark2); }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 60px;
+        }
+        .service-card {
+            background: var(--dark2);
+            padding: 40px;
+            cursor: none;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: var(--card-color, var(--blue));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .service-card:hover::before { opacity: 0.04; }
+        .service-card:hover { background: var(--card); }
+        .service-card:hover .service-arrow { transform: translate(4px, -4px); opacity: 1; }
+        .service-card:hover .service-icon-wrap { transform: scale(1.1); }
+
+        .service-icon-wrap {
+            width: 52px; height: 52px;
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 24px;
+            transition: transform 0.3s;
+        }
+        .service-icon-wrap svg { width: 22px; height: 22px; }
+
+        .service-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 22px; letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .service-desc {
+            font-size: 13px; color: var(--text-muted);
+            line-height: 1.6; font-weight: 300;
+        }
+        .service-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+        .service-link {
+            font-size: 10px; font-weight: 700;
+            letter-spacing: 2px; text-transform: uppercase;
+            color: var(--text-muted);
+            transition: color 0.3s;
+        }
+        .service-card:hover .service-link { color: #fff; }
+        .service-arrow {
+            opacity: 0.3;
+            transition: all 0.3s;
+        }
+
+        /* === WHY US === */
+        #why-us { background: var(--dark); }
+        .why-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 80px; align-items: center;
+            margin-top: 60px;
+        }
+        .why-feature {
+            display: flex; gap: 20px;
+            padding: 28px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+            margin-bottom: 16px;
+        }
+        .why-feature:hover {
+            background: rgba(255,255,255,0.02);
+            border-color: rgba(255,255,255,0.12);
+        }
+        .why-feature-icon {
+            width: 44px; height: 44px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .why-feature-icon svg { width: 20px; height: 20px; }
+        .why-feature-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 20px; letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+        .why-feature-desc {
+            font-size: 13px; color: var(--text-muted);
+            line-height: 1.6; font-weight: 300;
+        }
+
+        /* Stats panel */
+        .stats-panel {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px;
+            position: relative; overflow: hidden;
+        }
+        .stats-panel::before {
+            content: '';
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 200px; height: 200px;
+            background: var(--blue);
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.1;
+        }
+        .stats-panel-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 28px; letter-spacing: 3px;
+            margin-bottom: 32px; color: var(--text-muted);
+        }
+        .stat-row {
+            margin-bottom: 24px;
+        }
+        .stat-row-top {
+            display: flex; justify-content: space-between;
+            font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+            text-transform: uppercase; margin-bottom: 8px;
+            color: var(--text-muted);
+        }
+        .stat-row-top span:last-child { color: #fff; }
+        .stat-bar-bg {
+            height: 3px; background: rgba(255,255,255,0.06);
+            border-radius: 10px; overflow: hidden;
+        }
+        .stat-bar-fill {
+            height: 100%; border-radius: 10px;
+            position: relative;
+            transform-origin: left;
+            animation: barGrow 1.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            transform: scaleX(0);
+        }
+        @keyframes barGrow {
+            to { transform: scaleX(1); }
+        }
+        .stat-bar-fill::after {
+            content: '';
+            position: absolute; right: 0; top: 50%;
+            transform: translateY(-50%);
+            width: 8px; height: 8px; border-radius: 50%;
+            background: inherit;
+            box-shadow: 0 0 8px currentColor;
+        }
+
+        /* === PROCESS === */
+        #process {
+            background: var(--dark2);
+            position: relative; overflow: hidden;
+        }
+        #process::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse 60% 60% at 50% 100%, rgba(0,122,255,0.08), transparent);
+        }
+        .process-steps {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            margin-top: 60px;
+            position: relative;
+        }
+        .process-step {
+            padding: 40px 32px;
+            background: var(--dark2);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s;
+        }
+        .process-step:hover {
+            background: var(--card);
+            border-color: rgba(255,255,255,0.12);
+            transform: translateY(-6px);
+        }
+        .process-step-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 80px; line-height: 1;
+            color: rgba(255,255,255,0.04);
+            position: absolute; top: 10px; right: 16px;
+            letter-spacing: 0;
+            pointer-events: none;
+        }
+        .process-step-icon {
+            width: 56px; height: 56px; border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 20px;
+        }
+        .process-step-icon svg { width: 24px; height: 24px; }
+        .process-step-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 26px; letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .process-step-desc {
+            font-size: 12px; color: var(--text-muted);
+            line-height: 1.7; font-weight: 300;
+        }
+
+        /* === CONTACT === */
+        #contact { background: var(--dark); }
+        .contact-wrap {
+            display: grid; grid-template-columns: 1fr 1.7fr;
+            gap: 2px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            overflow: hidden;
+            margin-top: 60px;
+        }
+        .contact-left {
+            background: var(--card);
+            padding: 60px 48px;
+            position: relative; overflow: hidden;
+        }
+        .contact-left::before {
+            content: '';
+            position: absolute;
+            bottom: -80px; left: -80px;
+            width: 300px; height: 300px;
+            background: linear-gradient(135deg, var(--red), var(--blue));
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+        }
+        .contact-left-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 40px; letter-spacing: 3px;
+            margin-bottom: 40px; line-height: 1;
+        }
+        .contact-info-item {
+            margin-bottom: 28px;
+        }
+        .contact-info-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 9px; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+        .contact-info-value {
+            font-size: 15px; font-weight: 600;
+        }
+        .contact-socials {
+            display: flex; gap: 12px; margin-top: 40px;
+        }
+        .contact-social-btn {
+            width: 44px; height: 44px; border-radius: 12px;
+            border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s;
+            cursor: none;
+            text-decoration: none; color: var(--text-muted);
+        }
+        .contact-social-btn:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(255,255,255,0.15);
+            color: #fff;
+        }
+        .contact-social-btn svg { width: 16px; height: 16px; }
+
+        .contact-right {
+            background: var(--dark2);
+            padding: 60px 56px;
+        }
+        .contact-form-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 46px; letter-spacing: 2px;
+            line-height: 1; margin-bottom: 36px;
+        }
+        .contact-form-title span { color: var(--blue); }
+        .form-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .form-group { display: flex; flex-direction: column; gap: 6px; }
+        .form-group.full { grid-column: 1 / -1; }
+        .form-label {
+            font-size: 10px; font-weight: 700; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--text-muted);
+        }
+        .form-input {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 18px;
+            color: #fff;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px; font-weight: 400;
+            outline: none;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        .form-input:focus {
+            border-color: var(--blue);
+            background: rgba(0,122,255,0.06);
+            box-shadow: 0 0 0 4px rgba(0,122,255,0.1);
+        }
+        .form-input::placeholder { color: rgba(255,255,255,0.2); }
+        select.form-input { cursor: none; }
+        select.form-input option { background: var(--card); }
+
+        .btn-submit {
+            width: 100%; padding: 16px;
+            background: linear-gradient(135deg, var(--blue) 0%, #0044bb 100%);
+            border: none; border-radius: 12px;
+            color: #fff;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px; font-weight: 700;
+            letter-spacing: 3px; text-transform: uppercase;
+            cursor: none; transition: all 0.3s;
+            box-shadow: 0 8px 32px rgba(0,122,255,0.3);
+            margin-top: 8px;
+        }
+        .btn-submit:hover {
+            box-shadow: 0 12px 48px rgba(0,122,255,0.5);
+            transform: translateY(-2px);
+        }
+        .btn-submit:active { transform: translateY(0); }
+
+        /* === FOOTER === */
+        footer {
+            background: var(--dark2);
+            border-top: 1px solid var(--border);
+            padding: 40px 0;
+            text-align: center;
+        }
+        .footer-inner {
+            max-width: 1280px; margin: 0 auto; padding: 0 40px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .footer-copy {
+            font-size: 11px; font-weight: 500;
+            letter-spacing: 2px; text-transform: uppercase;
+            color: var(--text-muted);
+        }
+        .footer-links {
+            display: flex; gap: 32px; list-style: none;
+        }
+        .footer-links a {
+            font-size: 11px; font-weight: 600;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            color: var(--text-muted); text-decoration: none;
+            transition: color 0.3s; cursor: none;
+        }
+        .footer-links a:hover { color: #fff; }
+
+        /* === MODAL === */
+        .modal-overlay {
+            position: fixed; inset: 0; z-index: 200;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(16px);
+            display: none; align-items: center; justify-content: center;
+            padding: 20px;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            width: 100%; max-width: 560px;
+            padding: 48px;
+            position: relative;
+            animation: modalIn 0.4s cubic-bezier(0.23, 1, 0.32, 1) both;
+        }
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.92) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .modal-close {
+            position: absolute; top: 20px; right: 20px;
+            width: 36px; height: 36px; border-radius: 10px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            cursor: none; transition: all 0.3s; color: var(--text-muted);
+        }
+        .modal-close:hover { background: rgba(255,255,255,0.1); color: #fff; }
+        .modal-close svg { width: 16px; height: 16px; }
+        .modal-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 40px; letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+        .modal-desc {
+            font-size: 14px; color: var(--text-muted);
+            line-height: 1.7; margin-bottom: 28px;
+        }
+        .modal-points {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 10px; margin-bottom: 32px;
+        }
+        .modal-point {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 10px; padding: 12px 16px;
+            font-size: 11px; font-weight: 600;
+            letter-spacing: 1px; text-transform: uppercase;
+            color: rgba(255,255,255,0.7);
+            display: flex; align-items: center; gap: 8px;
+        }
+        .modal-point::before {
+            content: '✦';
+            font-size: 8px;
+        }
+
+        /* === WHATSAPP FLOAT === */
+        .wa-float {
+            position: fixed; bottom: 32px; right: 32px; z-index: 150;
+            width: 56px; height: 56px; border-radius: 50%;
+            background: #25D366;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 8px 32px rgba(37,211,102,0.4);
+            transition: all 0.3s;
+            text-decoration: none; cursor: none;
+        }
+        .wa-float:hover {
+            transform: scale(1.12);
+            box-shadow: 0 12px 48px rgba(37,211,102,0.6);
+        }
+        .wa-float svg { width: 26px; height: 26px; color: #fff; }
+
+        /* === REVEAL ANIMATIONS === */
+        .reveal {
+            opacity: 0; transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 1024px) {
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .process-steps { grid-template-columns: repeat(2, 1fr); }
+            .why-grid { grid-template-columns: 1fr; gap: 40px; }
+            .contact-wrap { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .services-grid { grid-template-columns: 1fr; }
+            .process-steps { grid-template-columns: 1fr 1fr; gap: 16px; }
+            .hero-stats { gap: 30px; }
+            .form-grid { grid-template-columns: 1fr; }
+            .footer-inner { flex-direction: column; gap: 20px; }
+            .contact-left, .contact-right { padding: 40px 32px; }
+            .modal-points { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .process-steps { grid-template-columns: 1fr; }
+            .hero-stats { flex-direction: column; gap: 20px; }
+        }
     </style>
 </head>
-<body class="antialiased">
+<body>
 
-    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 py-4 bg-white/90 backdrop-blur-md border-b border-gray-100">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <div class="nav-logo flex items-center gap-3 select-none cursor-pointer" onclick="window.scrollTo(0,0)">
-                <div class="flex gap-1">
-                    <div class="w-2 h-6 bg-brandRed rounded-full"></div>
-                    <div class="w-2 h-6 bg-brandBlue rounded-full"></div>
-                    <div class="w-2 h-6 bg-brandGreen rounded-full"></div>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="logo">
+                <div class="logo-bars">
+                    <span></span><span></span><span></span>
                 </div>
-                <div class="flex flex-col leading-none">
-                    <span class="text-xl font-bold tracking-tighter text-brandDark">DIGI<span class="logo-gradient">GENIE</span></span>
-                    <span class="text-[8px] tracking-[0.4em] text-gray-400 font-bold uppercase">Growth Empire</span>
-                </div>
-            </div>
-            <div class="hidden md:flex items-center gap-8 text-[10px] font-bold uppercase tracking-widest text-gray-500">
-                <a href="#services" class="hover:text-brandBlue transition-colors">Expertise</a>
-                <a href="#why-us" class="hover:text-brandBlue transition-colors">Why Us</a>
-                <a href="#process" class="hover:text-brandBlue transition-colors">Process</a>
-                <a href="#contact" class="px-5 py-2 bg-brandDark text-white rounded-full hover:bg-brandBlue transition-all duration-300">Start Growing</a>
-            </div>
+                <div class="logo-text">DIGI<span class="accent">GENIE</span></div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#services">Expertise</a></li>
+                <li><a href="#why-us">Why Us</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#contact" class="nav-cta">Start Growing</a></li>
+            </ul>
         </div>
     </nav>
 
-    <header class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-slate-50">
-        <div class="container mx-auto px-6 relative z-10 text-center">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-200 text-gray-500 text-[10px] font-black tracking-[0.2em] uppercase mb-8 shadow-sm">
-                🚀 Timely Delivery. Quick Solutions.
+    <!-- HERO -->
+    <header class="hero">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="hero-inner">
+            <div class="hero-badge">🚀 Timely Delivery. Quick Solutions.</div>
+            <h1 class="hero-title">
+                BUILD YOUR<br>
+                <span class="line2">DIGITAL EMPIRE.</span>
+            </h1>
+            <p class="hero-sub">Elevate your business with high-converting websites, dominant social strategies, and branding that demands attention.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    Claim Free Consultation
+                </a>
+                <a href="#services" class="btn-outline">Our Services</a>
             </div>
-            <h1 class="text-4xl md:text-7xl font-bold mb-6 leading-tight uppercase text-brandDark">Build Your <br/><span class="logo-gradient">Digital Empire.</span></h1>
-            <p class="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light">Elevate your business with high-converting websites, dominant social strategies, and branding that demands attention.</p>
-            <a href="#contact" class="px-10 py-5 bg-brandDark text-white font-black rounded-full hover:shadow-xl transition-all uppercase text-sm tracking-tighter hover:bg-brandBlue">Claim Free Consultation</a>
+            <div class="hero-stats">
+                <div class="text-center">
+                    <div class="hero-stat-num" data-count="200">0+</div>
+                    <div class="hero-stat-label">Projects Delivered</div>
+                </div>
+                <div class="text-center">
+                    <div class="hero-stat-num">48H</div>
+                    <div class="hero-stat-label">Avg Turnaround</div>
+                </div>
+                <div class="text-center">
+                    <div class="hero-stat-num">100%</div>
+                    <div class="hero-stat-label">Client Satisfaction</div>
+                </div>
+            </div>
         </div>
     </header>
 
-    <section id="services" class="py-24 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4 uppercase text-brandDark">Growth <span class="text-brandBlue">Expertise</span></h2>
-                <p class="text-gray-400 text-sm tracking-widest uppercase">Click a card to reveal the magic</p>
+    <!-- MARQUEE -->
+    <div class="marquee-wrap">
+        <div class="marquee-track">
+            <div class="marquee-item"><div class="marquee-dot" style="background:var(--red)"></div> Website Building</div>
+            <div class="marquee-item"><div class="marquee-dot" style="background:var(--blue)"></div> Social Video</div>
+            <div class="marquee-item"><div class="marquee-dot" style="background:var(--green)"></div> IG Profile Optimization</div>
+            <div class="marquee-item"><div class="marquee-dot" style="background:var(--yellow)"></div> Google GMB</div>
+            <div class="marquee-item"><div class="marquee-dot" style="background:var(--red)"></div> Business Registration</div>
+            <div class="marquee-item"><div class="marquee-dot" style="background:var(--blue)"></div> Viral Content</div>
+            <div class="marquee-item"><div class="marquee-dot" style="background:var(--green)"></div> Brand Strategy</div>
+            <div class="marquee-item"><div class="marquee-dot" style="background:var(--yellow)"></div> Digital Growth</div>
+            <!-- duplicate for seamless loop -->
+            <div class="marquee-item"><div class="marquee-dot" style="background:var(--red)"></div> Website Building</div>
+            <div class="marquee-item"><div class="marquee-dot" style="background:var(--blue)"></div> Social Video</div>
+            <div class="marquee-item"><div class="marquee-dot" style="background:var(--green)"></div> IG Profile Optimization</div>
+            <div class="marquee-item"><div class="marquee-dot" style="background:var(--yellow)"></div> Google GMB</div>
+            <div class="marquee-item"><div class="marquee-dot" style="background:var(--red)"></div> Business Registration</div>
+            <div class="marquee-item"><div class="marquee-dot" style="background:var(--blue)"></div> Viral Content</div>
+            <div class="marquee-item"><div class="marquee-dot" style="background:var(--green)"></div> Brand Strategy</div>
+            <div class="marquee-item"><div class="marquee-dot" style="background:var(--yellow)"></div> Digital Growth</div>
+        </div>
+    </div>
+
+    <!-- SERVICES -->
+    <section id="services">
+        <div class="section-inner">
+            <div class="reveal">
+                <div class="section-tag">Growth Expertise</div>
+                <h2 class="section-title">OUR <span class="colored">SERVICES</span></h2>
+                <p class="section-sub">Click any card to explore how we can accelerate your brand's growth.</p>
             </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="service-card p-8 rounded-2xl" onclick="openModal('web')">
-                    <i data-lucide="monitor" class="text-brandRed mb-6 w-10 h-10"></i>
-                    <h3 class="text-lg font-bold mb-3 uppercase tracking-tighter">Website Building</h3>
-                    <p class="text-gray-500 text-sm mb-4">Fast, conversion-ready business sites.</p>
-                    <span class="text-brandBlue text-[10px] font-black uppercase tracking-[0.2em]">View Details +</span>
+
+            <div class="services-grid reveal">
+                <!-- Card 1 -->
+                <div class="service-card" style="--card-color: var(--red)" onclick="openModal('web')">
+                    <div class="service-icon-wrap" style="background:rgba(255,59,48,0.1)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#FF3B30" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                    </div>
+                    <div class="service-name">Website Building</div>
+                    <p class="service-desc">Fast, conversion-ready business sites engineered for performance and sales.</p>
+                    <div class="service-footer">
+                        <span class="service-link">Explore Service</span>
+                        <span class="service-arrow" style="color:var(--red)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                        </span>
+                    </div>
                 </div>
-                <div class="service-card p-8 rounded-2xl" onclick="openModal('video')">
-                    <i data-lucide="video" class="text-brandBlue mb-6 w-10 h-10"></i>
-                    <h3 class="text-lg font-bold mb-3 uppercase tracking-tighter">Social Video</h3>
-                    <p class="text-gray-500 text-sm mb-4">Viral Reels & TikTok marketing.</p>
-                    <span class="text-brandBlue text-[10px] font-black uppercase tracking-[0.2em]">View Details +</span>
+
+                <!-- Card 2 -->
+                <div class="service-card" style="--card-color: var(--blue)" onclick="openModal('video')">
+                    <div class="service-icon-wrap" style="background:rgba(0,122,255,0.1)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#007AFF" stroke-width="1.8"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+                    </div>
+                    <div class="service-name">Social Video</div>
+                    <p class="service-desc">Viral Reels & TikTok marketing that stops the scroll and drives action.</p>
+                    <div class="service-footer">
+                        <span class="service-link">Explore Service</span>
+                        <span class="service-arrow" style="color:var(--blue)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                        </span>
+                    </div>
                 </div>
-                <div class="service-card p-8 rounded-2xl" onclick="openModal('ig-profile')">
-                    <i data-lucide="instagram" class="text-brandGreen mb-6 w-10 h-10"></i>
-                    <h3 class="text-lg font-bold mb-3 uppercase tracking-tighter">IG Profile</h3>
-                    <p class="text-gray-500 text-sm mb-4">Authority & Bio Optimization.</p>
-                    <span class="text-brandBlue text-[10px] font-black uppercase tracking-[0.2em]">View Details +</span>
+
+                <!-- Card 3 -->
+                <div class="service-card" style="--card-color: var(--green)" onclick="openModal('ig-profile')">
+                    <div class="service-icon-wrap" style="background:rgba(52,199,89,0.1)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#34C759" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </div>
+                    <div class="service-name">IG Profile</div>
+                    <p class="service-desc">Authority & Bio Optimization that turns your profile into a lead machine.</p>
+                    <div class="service-footer">
+                        <span class="service-link">Explore Service</span>
+                        <span class="service-arrow" style="color:var(--green)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                        </span>
+                    </div>
                 </div>
-                <div class="service-card p-8 rounded-2xl" onclick="openModal('ig-posts')">
-                    <i data-lucide="layout" class="text-brandYellow mb-6 w-10 h-10"></i>
-                    <h3 class="text-lg font-bold mb-3 uppercase tracking-tighter">IG Posts</h3>
-                    <p class="text-gray-500 text-sm mb-4">Branded content and designs.</p>
-                    <span class="text-brandBlue text-[10px] font-black uppercase tracking-[0.2em]">View Details +</span>
+
+                <!-- Card 4 -->
+                <div class="service-card" style="--card-color: var(--yellow)" onclick="openModal('ig-posts')">
+                    <div class="service-icon-wrap" style="background:rgba(255,204,0,0.1)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#FFCC00" stroke-width="1.8"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                    </div>
+                    <div class="service-name">IG Posts</div>
+                    <p class="service-desc">Premium branded content and designs that keep your audience engaged.</p>
+                    <div class="service-footer">
+                        <span class="service-link">Explore Service</span>
+                        <span class="service-arrow" style="color:var(--yellow)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                        </span>
+                    </div>
                 </div>
-                <div class="service-card p-8 rounded-2xl" onclick="openModal('gmb')">
-                    <i data-lucide="map-pin" class="text-brandRed mb-6 w-10 h-10"></i>
-                    <h3 class="text-lg font-bold mb-3 uppercase tracking-tighter">Google GMB</h3>
-                    <p class="text-gray-500 text-sm mb-4">Dominate local Map rankings.</p>
-                    <span class="text-brandBlue text-[10px] font-black uppercase tracking-[0.2em]">View Details +</span>
+
+                <!-- Card 5 -->
+                <div class="service-card" style="--card-color: var(--red)" onclick="openModal('gmb')">
+                    <div class="service-icon-wrap" style="background:rgba(255,59,48,0.1)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#FF3B30" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    </div>
+                    <div class="service-name">Google GMB</div>
+                    <p class="service-desc">Dominate local Map rankings and own your market on Search.</p>
+                    <div class="service-footer">
+                        <span class="service-link">Explore Service</span>
+                        <span class="service-arrow" style="color:var(--red)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                        </span>
+                    </div>
                 </div>
-                <div class="service-card p-8 rounded-2xl" onclick="openModal('registration')">
-                    <i data-lucide="globe" class="text-brandBlue mb-6 w-10 h-10"></i>
-                    <h3 class="text-lg font-bold mb-3 uppercase tracking-tighter">Registration</h3>
-                    <p class="text-gray-500 text-sm mb-4">IndiaMart, JustDial, TradeIndia & more.</p>
-                    <span class="text-brandBlue text-[10px] font-black uppercase tracking-[0.2em]">View Details +</span>
+
+                <!-- Card 6 -->
+                <div class="service-card" style="--card-color: var(--blue)" onclick="openModal('registration')">
+                    <div class="service-icon-wrap" style="background:rgba(0,122,255,0.1)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#007AFF" stroke-width="1.8"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    </div>
+                    <div class="service-name">Registration</div>
+                    <p class="service-desc">IndiaMart, JustDial, TradeIndia & more — get listed everywhere.</p>
+                    <div class="service-footer">
+                        <span class="service-link">Explore Service</span>
+                        <span class="service-arrow" style="color:var(--blue)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="why-us" class="py-24 bg-slate-50 border-y border-gray-100">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div>
-                    <h2 class="text-3xl font-bold mb-8 uppercase leading-tight text-brandDark">Better than <br/><span class="text-brandBlue">The Rest</span></h2>
-                    <div class="space-y-8">
-                        <div class="flex gap-5">
-                            <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-brandBlue/5 flex items-center justify-center"><i data-lucide="clock" class="text-brandBlue w-5 h-5"></i></div>
-                            <div>
-                                <h4 class="text-lg font-bold uppercase tracking-tighter">Timely Delivery</h4>
-                                <p class="text-gray-500 text-sm font-light">We value your growth timeline. Our team ensures project completion in record time without compromising quality.</p>
-                            </div>
+    <!-- WHY US -->
+    <section id="why-us">
+        <div class="section-inner">
+            <div class="reveal">
+                <div class="section-tag">Differentiators</div>
+                <h2 class="section-title">BETTER THAN <span class="colored">THE REST</span></h2>
+            </div>
+            <div class="why-grid">
+                <div class="reveal">
+                    <div class="why-feature">
+                        <div class="why-feature-icon" style="background:rgba(0,122,255,0.1)">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#007AFF" stroke-width="1.8"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                         </div>
-                        <div class="flex gap-5">
-                            <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-brandRed/5 flex items-center justify-center"><i data-lucide="zap" class="text-brandRed w-5 h-5"></i></div>
-                            <div>
-                                <h4 class="text-lg font-bold uppercase tracking-tighter">Quick Solutions</h4>
-                                <p class="text-gray-500 text-sm font-light">Rapid problem-solving for your digital hurdles. We provide direct results-oriented fixes for your brand.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white p-10 rounded-3xl border border-gray-100 shadow-sm">
-                    <h3 class="text-xl font-bold mb-6 uppercase tracking-widest text-center md:text-left text-brandDark">Client Preference</h3>
-                    <div class="space-y-6">
                         <div>
-                            <div class="flex justify-between text-[10px] font-bold uppercase mb-2 text-gray-400"><span>Response Time</span><span class="text-brandGreen">Instant</span></div>
-                            <div class="w-full bg-slate-100 h-1 rounded-full"><div class="bg-brandGreen h-full w-full"></div></div>
+                            <div class="why-feature-title">Timely Delivery</div>
+                            <p class="why-feature-desc">We value your growth timeline. Our team ensures project completion in record time without compromising quality.</p>
+                        </div>
+                    </div>
+                    <div class="why-feature">
+                        <div class="why-feature-icon" style="background:rgba(255,59,48,0.1)">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#FF3B30" stroke-width="1.8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
                         </div>
                         <div>
-                            <div class="flex justify-between text-[10px] font-bold uppercase mb-2 text-gray-400"><span>Launch Speed</span><span class="text-brandBlue">Fast Track</span></div>
-                            <div class="w-full bg-slate-100 h-1 rounded-full"><div class="bg-brandBlue h-full w-full"></div></div>
+                            <div class="why-feature-title">Quick Solutions</div>
+                            <p class="why-feature-desc">Rapid problem-solving for your digital hurdles. We provide direct results-oriented fixes for your brand.</p>
                         </div>
+                    </div>
+                    <div class="why-feature">
+                        <div class="why-feature-icon" style="background:rgba(52,199,89,0.1)">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#34C759" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                        </div>
+                        <div>
+                            <div class="why-feature-title">Data-Driven Approach</div>
+                            <p class="why-feature-desc">Every decision backed by analytics. We track, measure, and optimize relentlessly to maximize your ROI.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="stats-panel reveal">
+                    <div class="stats-panel-title">CLIENT PREFERENCE</div>
+                    <div class="stat-row">
+                        <div class="stat-row-top"><span>Response Time</span><span>Instant</span></div>
+                        <div class="stat-bar-bg"><div class="stat-bar-fill" style="width:100%; background: var(--green); animation-delay: 0.2s;"></div></div>
+                    </div>
+                    <div class="stat-row">
+                        <div class="stat-row-top"><span>Launch Speed</span><span>Fast Track</span></div>
+                        <div class="stat-bar-bg"><div class="stat-bar-fill" style="width:92%; background: var(--blue); animation-delay: 0.4s;"></div></div>
+                    </div>
+                    <div class="stat-row">
+                        <div class="stat-row-top"><span>Design Quality</span><span>Premium</span></div>
+                        <div class="stat-bar-bg"><div class="stat-bar-fill" style="width:97%; background: var(--red); animation-delay: 0.6s;"></div></div>
+                    </div>
+                    <div class="stat-row">
+                        <div class="stat-row-top"><span>Client Retention</span><span>Loyal Base</span></div>
+                        <div class="stat-bar-bg"><div class="stat-bar-fill" style="width:88%; background: var(--yellow); animation-delay: 0.8s;"></div></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="process" class="py-24 bg-white">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl font-bold mb-16 uppercase leading-tight text-brandDark">The <span class="text-brandBlue">Roadmap</span></h2>
-            <div class="relative flex flex-col md:flex-row justify-between gap-12">
-                <div class="hidden md:block absolute top-12 left-0 w-full h-0.5 step-line -z-10"></div>
-                <div class="flex-1 group">
-                    <div class="w-24 h-24 rounded-full bg-slate-50 border-4 border-gray-100 flex items-center justify-center mx-auto mb-6 group-hover:border-brandRed transition-all"><i data-lucide="search" class="text-brandRed"></i></div>
-                    <h3 class="font-bold uppercase tracking-tighter mb-2">Discovery</h3>
-                    <p class="text-gray-400 text-xs font-light leading-relaxed px-4">Analyzing your business goals and target audience to build a solid foundation.</p>
+    <!-- PROCESS -->
+    <section id="process">
+        <div class="section-inner">
+            <div class="reveal" style="text-align:center">
+                <div class="section-tag">How We Work</div>
+                <h2 class="section-title">THE <span class="colored">ROADMAP</span></h2>
+            </div>
+            <div class="process-steps reveal">
+                <div class="process-step">
+                    <div class="process-step-num">01</div>
+                    <div class="process-step-icon" style="background:rgba(255,59,48,0.1)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#FF3B30" stroke-width="1.8"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </div>
+                    <div class="process-step-name">Discovery</div>
+                    <p class="process-step-desc">Analyzing your business goals and target audience to build a solid foundation for growth.</p>
                 </div>
-                <div class="flex-1 group">
-                    <div class="w-24 h-24 rounded-full bg-slate-50 border-4 border-gray-100 flex items-center justify-center mx-auto mb-6 group-hover:border-brandBlue transition-all"><i data-lucide="layers" class="text-brandBlue"></i></div>
-                    <h3 class="font-bold uppercase tracking-tighter mb-2">Strategy</h3>
-                    <p class="text-gray-400 text-xs font-light leading-relaxed px-4">Custom-tailored roadmap designed to maximize ROI and outperform competitors.</p>
+                <div class="process-step">
+                    <div class="process-step-num">02</div>
+                    <div class="process-step-icon" style="background:rgba(0,122,255,0.1)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#007AFF" stroke-width="1.8"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    </div>
+                    <div class="process-step-name">Strategy</div>
+                    <p class="process-step-desc">Custom-tailored roadmap designed to maximize ROI and outperform your competitors.</p>
                 </div>
-                <div class="flex-1 group">
-                    <div class="w-24 h-24 rounded-full bg-slate-50 border-4 border-gray-100 flex items-center justify-center mx-auto mb-6 group-hover:border-brandGreen transition-all"><i data-lucide="code" class="text-brandGreen"></i></div>
-                    <h3 class="font-bold uppercase tracking-tighter mb-2">Launch</h3>
-                    <p class="text-gray-400 text-xs font-light leading-relaxed px-4">Fast execution and precision building of your digital assets and campaigns.</p>
+                <div class="process-step">
+                    <div class="process-step-num">03</div>
+                    <div class="process-step-icon" style="background:rgba(52,199,89,0.1)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#34C759" stroke-width="1.8"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    </div>
+                    <div class="process-step-name">Launch</div>
+                    <p class="process-step-desc">Fast execution and precision building of your digital assets and campaigns.</p>
                 </div>
-                <div class="flex-1 group">
-                    <div class="w-24 h-24 rounded-full bg-slate-50 border-4 border-gray-100 flex items-center justify-center mx-auto mb-6 group-hover:border-brandYellow transition-all"><i data-lucide="rocket" class="text-brandYellow"></i></div>
-                    <h3 class="font-bold uppercase tracking-tighter mb-2">Scale</h3>
-                    <p class="text-gray-400 text-xs font-light leading-relaxed px-4">Continuous optimization and data-driven scaling to dominate your niche.</p>
+                <div class="process-step">
+                    <div class="process-step-num">04</div>
+                    <div class="process-step-icon" style="background:rgba(255,204,0,0.1)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#FFCC00" stroke-width="1.8"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path></svg>
+                    </div>
+                    <div class="process-step-name">Scale</div>
+                    <p class="process-step-desc">Continuous optimization and data-driven scaling to dominate your niche.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="py-24 bg-slate-50">
-        <div class="container mx-auto px-6">
-            <div class="bg-white rounded-3xl overflow-hidden flex flex-col lg:flex-row shadow-xl border border-gray-100">
-                <div class="lg:w-1/3 p-12 bg-slate-50/50 border-r border-gray-100">
-                    <h2 class="text-2xl font-bold mb-8 uppercase text-brandBlue tracking-tighter">Connect</h2>
-                    <div class="space-y-6">
-                        <div><p class="text-[10px] text-gray-400 uppercase font-black mb-1">WhatsApp</p><p class="font-bold text-brandDark">+91-93398-12593</p></div>
-                        <div><p class="text-[10px] text-gray-400 uppercase font-black mb-1">Email</p><p class="font-bold text-sm text-brandDark">digigenie.business@gmail.com</p></div>
-                        <div><p class="text-[10px] text-gray-400 uppercase font-black mb-1">Location</p><p class="font-bold text-brandDark">Global Growth Empire</p></div>
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="section-inner">
+            <div class="reveal" style="text-align:center">
+                <div class="section-tag">Get In Touch</div>
+                <h2 class="section-title">LET'S <span class="colored">CONNECT</span></h2>
+            </div>
+            <div class="contact-wrap reveal">
+                <div class="contact-left">
+                    <div class="contact-left-title">REACH<br>OUT.</div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-label">// WhatsApp</div>
+                        <div class="contact-info-value">+91-93398-12593</div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-label">// Email</div>
+                        <div class="contact-info-value" style="font-size:13px">info@digigenie.in</div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-label">// Location</div>
+                        <div class="contact-info-value">Global Growth Empire</div>
+                    </div>
+                    <div class="contact-socials">
+                        <a href="https://wa.me/919339812593" target="_blank" class="contact-social-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                        </a>
+                        <a href="#" class="contact-social-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                        <a href="#" class="contact-social-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        </a>
                     </div>
                 </div>
-                <div class="lg:w-2/3 p-12">
-                    <h2 class="text-3xl font-bold mb-8 uppercase tracking-tighter text-brandDark">Let us <span class="text-brandBlue">reach you.</span></h2>
-                    <form class="space-y-6">
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <input type="text" placeholder="Full Name" class="w-full bg-slate-50 border border-gray-100 rounded-xl px-6 py-4 outline-none focus:border-brandBlue font-light">
-                            <input type="tel" placeholder="Contact Number" class="w-full bg-slate-50 border border-gray-100 rounded-xl px-6 py-4 outline-none focus:border-brandBlue font-light">
+                <div class="contact-right">
+                    <div class="contact-form-title">LET US<br><span>REACH YOU.</span></div>
+                    <form class="form-grid" onsubmit="return false;">
+                        <div class="form-group">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" placeholder="John Doe" class="form-input">
                         </div>
-                        <input type="email" placeholder="Business Email" class="w-full bg-slate-50 border border-gray-100 rounded-xl px-6 py-4 outline-none focus:border-brandBlue font-light">
-                        <select class="w-full bg-slate-50 border border-gray-100 rounded-xl px-6 py-4 outline-none focus:border-brandBlue text-gray-400 font-light">
-                            <option>Website Building</option>
-                            <option>Social Video Creation</option>
-                            <option>Instagram Optimization</option>
-                            <option>Google Business (GMB)</option>
-                            <option>Business Site Registration</option>
-                            <option>Others</option>
-                        </select>
-                        <textarea rows="4" placeholder="How can we help you grow?" class="w-full bg-slate-50 border border-gray-100 rounded-xl px-6 py-4 outline-none focus:border-brandBlue font-light"></textarea>
-                        <button class="w-full py-5 bg-brandDark text-white font-black rounded-xl hover:bg-brandBlue transition-all uppercase text-xs tracking-[0.2em] shadow-lg">Launch Project</button>
+                        <div class="form-group">
+                            <label class="form-label">Contact Number</label>
+                            <input type="tel" placeholder="+91 00000 00000" class="form-input">
+                        </div>
+                        <div class="form-group full">
+                            <label class="form-label">Business Email</label>
+                            <input type="email" placeholder="you@company.com" class="form-input">
+                        </div>
+                        <div class="form-group full">
+                            <label class="form-label">Service Required</label>
+                            <select class="form-input">
+                                <option value="">Select a service…</option>
+                                <option>Website Building</option>
+                                <option>Social Video Creation</option>
+                                <option>Instagram Optimization</option>
+                                <option>Google Business (GMB)</option>
+                                <option>Business Site Registration</option>
+                                <option>Others</option>
+                            </select>
+                        </div>
+                        <div class="form-group full">
+                            <label class="form-label">Message</label>
+                            <textarea rows="4" placeholder="How can we help you grow?" class="form-input" style="resize:none"></textarea>
+                        </div>
+                        <div class="form-group full">
+                            <button type="submit" class="btn-submit">Launch Project →</button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <div id="serviceModal" class="fixed inset-0 hidden modal-bg p-6 flex items-center justify-center">
-        <div class="bg-white w-full max-w-2xl rounded-3xl p-8 md:p-12 relative border border-gray-100 shadow-2xl">
-            <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-400 hover:text-brandDark"><i data-lucide="x" class="w-8 h-8"></i></button>
-            <div id="modalContent" class="space-y-6"></div>
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-copy">© 2026 DigiGenie Agency. Global Digital Growth.</div>
+            <ul class="footer-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#why-us">Why Us</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="serviceModal" onclick="handleModalClick(event)">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <div id="modalContent"></div>
         </div>
     </div>
 
-    <a href="https://wa.me/919339812593" target="_blank" class="fixed bottom-8 right-8 z-[100] bg-[#25D366] p-4 rounded-full shadow-2xl hover:scale-110 transition-transform">
-        <i data-lucide="message-circle" class="w-8 h-8 text-white"></i>
+    <!-- WHATSAPP FLOAT -->
+    <a href="https://wa.me/919339812593" target="_blank" class="wa-float">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
     </a>
 
-    <footer class="py-12 text-center text-gray-400 border-t border-gray-100 text-[10px] font-bold uppercase tracking-widest bg-white">
-        <p>© 2026 DigiGenie Agency. Global Digital Growth.</p>
-    </footer>
-
     <script>
-        lucide.createIcons();
+        // === CURSOR ===
+        const cursor = document.getElementById('cursor');
+        const ring = document.getElementById('cursorRing');
+        let mx = 0, my = 0, rx = 0, ry = 0;
+        document.addEventListener('mousemove', e => {
+            mx = e.clientX; my = e.clientY;
+            cursor.style.left = mx - 5 + 'px';
+            cursor.style.top = my - 5 + 'px';
+        });
+        function animateRing() {
+            rx += (mx - rx - 18) * 0.12;
+            ry += (my - ry - 18) * 0.12;
+            ring.style.left = rx + 'px';
+            ring.style.top = ry + 'px';
+            requestAnimationFrame(animateRing);
+        }
+        animateRing();
+
+        // === NAVBAR SCROLL ===
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // === REVEAL ON SCROLL ===
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // === MODAL DATA ===
         const modalData = {
-            'web': { title: 'Web Empire', color: '#FF3B30', desc: 'Custom digital architecture built for speed and sales.', points: ['Custom Development', 'SEO-Ready Structure', 'E-commerce Capable'] },
-            'video': { title: 'Viral Video', color: '#007AFF', desc: 'Capturing modern attention with high-impact content.', points: ['Trending Reels', 'Pro Audio/Visuals', 'Viral Hooks'] },
-            'ig-profile': { title: 'IG Profile', color: '#34C759', desc: 'Turn your profile into a high-converting landing page.', points: ['Bio Optimization', 'Highlight Branding', 'Keyword Strategy'] },
-            'ig-posts': { title: 'IG Posts', color: '#FFCC00', desc: 'Premium designs that keep your audience scrolling.', points: ['Custom Carousels', 'Branded Graphics', 'Monthly Content'] },
-            'gmb': { title: 'Google GMB', color: '#FF3B30', desc: 'Own your local market on Search and Maps.', points: ['Verification Help', 'Map SEO Ranking', 'Review Management'] },
-            'registration': { title: 'Site Registration', color: '#007AFF', desc: 'Get listed where your customers are looking.', points: ['IndiaMart & JustDial Setup', 'TradeIndia Integration', 'Business Directory Backlinks', 'Global Map Presence'] }
+            'web': {
+                title: 'Web Empire',
+                color: '#FF3B30',
+                desc: 'Custom digital architecture built for speed and sales. We build stunning, conversion-optimized websites that turn visitors into customers.',
+                points: ['Custom Development', 'SEO-Ready Structure', 'E-commerce Capable', 'Mobile First Design']
+            },
+            'video': {
+                title: 'Viral Video',
+                color: '#007AFF',
+                desc: 'Capturing modern attention with high-impact content that stops the scroll, drives engagement, and builds brand recall.',
+                points: ['Trending Reels', 'Pro Audio/Visuals', 'Viral Hooks', 'Platform Optimization']
+            },
+            'ig-profile': {
+                title: 'IG Profile',
+                color: '#34C759',
+                desc: 'Turn your profile into a high-converting landing page. We optimize every element for maximum authority and reach.',
+                points: ['Bio Optimization', 'Highlight Branding', 'Keyword Strategy', 'Link-In-Bio Setup']
+            },
+            'ig-posts': {
+                title: 'IG Posts',
+                color: '#FFCC00',
+                desc: 'Premium designs that keep your audience scrolling and your brand top-of-mind every single day.',
+                points: ['Custom Carousels', 'Branded Graphics', 'Monthly Content', 'Story Templates']
+            },
+            'gmb': {
+                title: 'Google GMB',
+                color: '#FF3B30',
+                desc: 'Own your local market on Search and Maps. We set up and optimize your Google Business profile for maximum visibility.',
+                points: ['Verification Help', 'Map SEO Ranking', 'Review Management', 'Photo Optimization']
+            },
+            'registration': {
+                title: 'Site Registration',
+                color: '#007AFF',
+                desc: 'Get listed where your customers are looking. Maximum visibility across all major business directories.',
+                points: ['IndiaMart & JustDial', 'TradeIndia Integration', 'Directory Backlinks', 'Global Map Presence']
+            }
         };
 
         function openModal(service) {
-            const data = modalData[service];
+            const d = modalData[service];
             document.getElementById('modalContent').innerHTML = `
-                <h2 class="text-2xl font-bold uppercase" style="color: ${data.color}">${data.title}</h2>
-                <p class="text-gray-500 font-light">${data.desc}</p>
-                <div class="grid md:grid-cols-2 gap-4">${data.points.map(p => `<div class="bg-slate-50 p-4 rounded-xl text-[10px] font-bold uppercase border border-gray-100">✓ ${p}</div>`).join('')}</div>
-                <div class="pt-6"><a href="#contact" onclick="closeModal()" class="bg-brandDark text-white font-bold px-10 py-3 rounded-full inline-block text-[10px] uppercase tracking-widest shadow-md">Inquire Now</a></div>
+                <div style="margin-bottom:8px">
+                    <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase">// Service Details</span>
+                </div>
+                <div class="modal-title" style="color:${d.color}">${d.title}</div>
+                <p class="modal-desc">${d.desc}</p>
+                <div class="modal-points">
+                    ${d.points.map(p => `<div class="modal-point">${p}</div>`).join('')}
+                </div>
+                <a href="#contact" onclick="closeModal()" class="btn-primary" style="display:inline-flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    Inquire Now
+                </a>
             `;
-            document.getElementById('serviceModal').classList.replace('hidden', 'flex');
-            lucide.createIcons();
+            document.getElementById('serviceModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
-        function closeModal() { document.getElementById('serviceModal').classList.replace('flex', 'hidden'); }
+        function closeModal() {
+            document.getElementById('serviceModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        function handleModalClick(e) {
+            if (e.target === e.currentTarget) closeModal();
+        }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
     </script>
 </body>
 </html>
