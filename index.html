@@ -9,54 +9,57 @@
     
     <script src="https://unpkg.com/lucide@latest"></script>
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: { neon: '#00FF6A' },
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    fontFamily: { 
+                        sans: ['Outfit', 'sans-serif'],
+                        heading: ['Syncopate', 'sans-serif'],
+                    },
                 }
             }
         }
     </script>
     <style>
-        body { background-color: #000; color: #fff; overflow-x: hidden; }
+        body { background-color: #000; color: #fff; overflow-x: hidden; font-family: 'Outfit', sans-serif; }
+        h1, h2, h3, .nav-logo { font-family: 'Syncopate', sans-serif; letter-spacing: -0.05em; }
         ::selection { background-color: #00FF6A; color: #000; }
         .glass-panel { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .modal-bg { background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(8px); z-index: 100; }
+        .modal-bg { background: rgba(0, 0, 0, 0.92); backdrop-filter: blur(10px); z-index: 100; }
         .step-line { background: linear-gradient(90deg, #00FF6A 0%, rgba(0, 255, 106, 0) 100%); }
         
-        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #111; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #00FF6A; }
         
-        .service-card { cursor: pointer; transition: all 0.3s ease; }
-        .service-card:hover { transform: translateY(-5px); border-color: #00FF6A; box-shadow: 0 0 20px rgba(0, 255, 106, 0.1); }
+        .service-card { cursor: pointer; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .service-card:hover { transform: translateY(-10px); border-color: #00FF6A; box-shadow: 0 10px 30px rgba(0, 255, 106, 0.15); }
     </style>
 </head>
-<body class="font-sans antialiased">
+<body class="antialiased">
 
     <nav id="navbar" class="fixed top-0 left-0 w-full z-50 py-4 bg-black/90 backdrop-blur-md border-b border-white/5">
         <div class="container mx-auto px-6 flex justify-between items-center">
-            <div class="flex items-center gap-3 select-none cursor-pointer" onclick="window.scrollTo(0,0)">
+            <div class="nav-logo flex items-center gap-3 select-none cursor-pointer" onclick="window.scrollTo(0,0)">
                 <div class="relative">
-                    <i data-lucide="crown" class="w-8 h-8 text-neon"></i>
+                    <i data-lucide="crown" class="w-7 h-7 text-neon"></i>
                     <div class="absolute inset-0 bg-neon blur-md opacity-30"></div>
                 </div>
                 <div class="flex flex-col leading-none">
-                    <span class="text-2xl font-black tracking-tighter">DIGI<span class="text-neon">GENIE</span></span>
-                    <span class="text-[10px] tracking-[0.3em] text-gray-500 font-bold uppercase">Growth Empire</span>
+                    <span class="text-xl font-bold">DIGI<span class="text-neon">GENIE</span></span>
+                    <span class="text-[8px] tracking-[0.4em] text-gray-500 font-bold uppercase">Growth Empire</span>
                 </div>
             </div>
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+            <div class="hidden md:flex items-center gap-8 text-[10px] font-bold uppercase tracking-widest text-gray-400">
                 <a href="#services" class="hover:text-neon transition-colors">Expertise</a>
                 <a href="#why-us" class="hover:text-neon transition-colors">Why Us</a>
                 <a href="#process" class="hover:text-neon transition-colors">Process</a>
-                <a href="#contact" class="px-5 py-2 border border-neon text-neon rounded hover:bg-neon hover:text-black transition-all duration-300 font-bold">Start Growing</a>
+                <a href="#contact" class="px-5 py-2 border border-neon text-neon rounded hover:bg-neon hover:text-black transition-all duration-300">Start Growing</a>
             </div>
         </div>
     </nav>
@@ -67,57 +70,57 @@
             <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
         </div>
         <div class="container mx-auto px-6 relative z-10 text-center">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-300 text-xs font-bold tracking-widest uppercase mb-8">
-                🚀 Faster Delivery. Smarter Solutions.
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-400 text-[10px] font-black tracking-[0.2em] uppercase mb-8">
+                🚀 Timely Delivery. Quick Solutions.
             </div>
-            <h1 class="text-6xl md:text-8xl font-black mb-6 leading-tight">Master the <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-neon via-emerald-400 to-cyan-500">Digital Realm.</span></h1>
-            <p class="text-gray-400 text-xl max-w-3xl mx-auto mb-10">Kolkata's premier agency for local businesses ready to dominate globally.</p>
-            <a href="#contact" class="px-10 py-4 bg-neon text-black font-black rounded-full hover:shadow-[0_0_30px_rgba(0,255,106,0.5)] transition-all">Claim Free Consultation</a>
+            <h1 class="text-4xl md:text-7xl font-bold mb-6 leading-tight uppercase">Build Your <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-neon via-emerald-400 to-cyan-500">Digital Empire.</span></h1>
+            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light">Kolkata's growth-focused agency specializing in high-speed web architecture and viral content systems.</p>
+            <a href="#contact" class="px-10 py-5 bg-neon text-black font-black rounded-full hover:shadow-[0_0_40px_rgba(0,255,106,0.6)] transition-all uppercase text-sm tracking-tighter">Claim Free Consultation</a>
         </div>
     </header>
 
     <section id="services" class="py-24 bg-black">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Our <span class="text-neon">Growth Services</span></h2>
-                <p class="text-gray-500">Click a card to see our specialized deliverables.</p>
+                <h2 class="text-3xl font-bold mb-4 uppercase">Growth <span class="text-neon">Expertise</span></h2>
+                <p class="text-gray-500 text-sm tracking-widest uppercase">Click a card to reveal the magic</p>
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="service-card glass-panel p-8 rounded-2xl" onclick="openModal('web')">
-                    <i data-lucide="monitor" class="text-neon mb-6"></i>
-                    <h3 class="text-xl font-bold mb-2">Website Building</h3>
-                    <p class="text-gray-400 text-sm mb-4">High-speed business sites.</p>
-                    <span class="text-neon text-xs font-bold uppercase tracking-widest">Details +</span>
+                    <i data-lucide="monitor" class="text-neon mb-6 w-10 h-10"></i>
+                    <h3 class="text-lg font-bold mb-3 uppercase tracking-tighter">Website Building</h3>
+                    <p class="text-gray-400 text-sm mb-4">Fast, conversion-ready business sites.</p>
+                    <span class="text-neon text-[10px] font-black uppercase tracking-[0.2em]">View Details +</span>
                 </div>
                 <div class="service-card glass-panel p-8 rounded-2xl" onclick="openModal('video')">
-                    <i data-lucide="video" class="text-neon mb-6"></i>
-                    <h3 class="text-xl font-bold mb-2">Social Video Creation</h3>
-                    <p class="text-gray-400 text-sm mb-4">Viral Reels & TikToks.</p>
-                    <span class="text-neon text-xs font-bold uppercase tracking-widest">Details +</span>
+                    <i data-lucide="video" class="text-neon mb-6 w-10 h-10"></i>
+                    <h3 class="text-lg font-bold mb-3 uppercase tracking-tighter">Social Video</h3>
+                    <p class="text-gray-400 text-sm mb-4">Viral Reels & TikTok marketing.</p>
+                    <span class="text-neon text-[10px] font-black uppercase tracking-[0.2em]">View Details +</span>
                 </div>
                 <div class="service-card glass-panel p-8 rounded-2xl" onclick="openModal('ig-profile')">
-                    <i data-lucide="instagram" class="text-neon mb-6"></i>
-                    <h3 class="text-xl font-bold mb-2">Instagram Profile</h3>
-                    <p class="text-gray-400 text-sm mb-4">Profile & Bio Optimization.</p>
-                    <span class="text-neon text-xs font-bold uppercase tracking-widest">Details +</span>
+                    <i data-lucide="instagram" class="text-neon mb-6 w-10 h-10"></i>
+                    <h3 class="text-lg font-bold mb-3 uppercase tracking-tighter">IG Profile</h3>
+                    <p class="text-gray-400 text-sm mb-4">Authority & Bio Optimization.</p>
+                    <span class="text-neon text-[10px] font-black uppercase tracking-[0.2em]">View Details +</span>
                 </div>
                 <div class="service-card glass-panel p-8 rounded-2xl" onclick="openModal('ig-posts')">
-                    <i data-lucide="layout" class="text-neon mb-6"></i>
-                    <h3 class="text-xl font-bold mb-2">Instagram Posts</h3>
-                    <p class="text-gray-400 text-sm mb-4">Creative Branded Content.</p>
-                    <span class="text-neon text-xs font-bold uppercase tracking-widest">Details +</span>
+                    <i data-lucide="layout" class="text-neon mb-6 w-10 h-10"></i>
+                    <h3 class="text-lg font-bold mb-3 uppercase tracking-tighter">IG Posts</h3>
+                    <p class="text-gray-400 text-sm mb-4">Branded content and designs.</p>
+                    <span class="text-neon text-[10px] font-black uppercase tracking-[0.2em]">View Details +</span>
                 </div>
                 <div class="service-card glass-panel p-8 rounded-2xl" onclick="openModal('gmb')">
-                    <i data-lucide="map-pin" class="text-neon mb-6"></i>
-                    <h3 class="text-xl font-bold mb-2">Google Business (GMB)</h3>
-                    <p class="text-gray-400 text-sm mb-4">Map rankings & Local SEO.</p>
-                    <span class="text-neon text-xs font-bold uppercase tracking-widest">Details +</span>
+                    <i data-lucide="map-pin" class="text-neon mb-6 w-10 h-10"></i>
+                    <h3 class="text-lg font-bold mb-3 uppercase tracking-tighter">Google GMB</h3>
+                    <p class="text-gray-400 text-sm mb-4">Dominate local Map rankings.</p>
+                    <span class="text-neon text-[10px] font-black uppercase tracking-[0.2em]">View Details +</span>
                 </div>
                 <div class="service-card glass-panel p-8 rounded-2xl" onclick="openModal('registration')">
-                    <i data-lucide="globe" class="text-neon mb-6"></i>
-                    <h3 class="text-xl font-bold mb-2">Business Registration</h3>
+                    <i data-lucide="globe" class="text-neon mb-6 w-10 h-10"></i>
+                    <h3 class="text-lg font-bold mb-3 uppercase tracking-tighter">Registration</h3>
                     <p class="text-gray-400 text-sm mb-4">Domain & Directory Setup.</p>
-                    <span class="text-neon text-xs font-bold uppercase tracking-widest">Details +</span>
+                    <span class="text-neon text-[10px] font-black uppercase tracking-[0.2em]">View Details +</span>
                 </div>
             </div>
         </div>
@@ -127,39 +130,35 @@
         <div class="container mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-16 items-center">
                 <div>
-                    <h2 class="text-4xl font-bold mb-8">How We Outpace <br/><span class="text-neon">The Competition</span></h2>
+                    <h2 class="text-3xl font-bold mb-8 uppercase leading-tight">Better than <br/><span class="text-neon">The Rest</span></h2>
                     <div class="space-y-8">
-                        <div class="flex gap-4">
-                            <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-neon/10 flex items-center justify-center"><i data-lucide="clock" class="text-neon"></i></div>
+                        <div class="flex gap-5">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-neon/10 border border-neon/20 flex items-center justify-center"><i data-lucide="clock" class="text-neon w-5 h-5"></i></div>
                             <div>
-                                <h4 class="text-xl font-bold">Timely Delivery</h4>
-                                <p class="text-gray-400 text-sm">We value time as much as you do. Our streamlined workflow ensures projects are launched in days, not months.</p>
+                                <h4 class="text-lg font-bold uppercase tracking-tighter">Timely Delivery</h4>
+                                <p class="text-gray-400 text-sm font-light">We value your growth timeline. Our team ensures project completion in record time without compromising quality.</p>
                             </div>
                         </div>
-                        <div class="flex gap-4">
-                            <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-neon/10 flex items-center justify-center"><i data-lucide="zap" class="text-neon"></i></div>
+                        <div class="flex gap-5">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-neon/10 border border-neon/20 flex items-center justify-center"><i data-lucide="zap" class="text-neon w-5 h-5"></i></div>
                             <div>
-                                <h4 class="text-xl font-bold">Quick Solutions</h4>
-                                <p class="text-gray-400 text-sm">No "technical fluff." We provide direct, effective solutions to immediate business hurdles like low traffic or poor engagement.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4">
-                            <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-neon/10 flex items-center justify-center"><i data-lucide="shield-check" class="text-neon"></i></div>
-                            <div>
-                                <h4 class="text-xl font-bold">Business-First Approach</h4>
-                                <p class="text-gray-400 text-sm">We don't just design; we build tools that make you money. Every pixel serves a sales purpose.</p>
+                                <h4 class="text-lg font-bold uppercase tracking-tighter">Quick Solutions</h4>
+                                <p class="text-gray-400 text-sm font-light">Rapid problem-solving for your digital hurdles. We provide direct results-oriented fixes for your brand.</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="glass-panel p-12 rounded-3xl border-neon/20 relative">
-                    <div class="absolute -top-6 -right-6 bg-neon text-black font-black px-6 py-2 rounded-lg rotate-12 shadow-xl">PREMIUM</div>
-                    <h3 class="text-2xl font-bold mb-6">The Genie Advantage</h3>
-                    <div class="space-y-4">
-                        <div class="flex justify-between text-sm"><span class="text-gray-400">Launch Speed</span><span class="text-neon font-bold">48-72 Hours</span></div>
-                        <div class="w-full bg-white/10 h-1 rounded-full"><div class="bg-neon h-full w-full"></div></div>
-                        <div class="flex justify-between text-sm mt-4"><span class="text-gray-400">Customer Support</span><span class="text-neon font-bold">Instant / 24x7</span></div>
-                        <div class="w-full bg-white/10 h-1 rounded-full"><div class="bg-neon h-full w-full"></div></div>
+                <div class="glass-panel p-10 rounded-3xl border-neon/20 bg-gradient-to-br from-white/5 to-transparent">
+                    <h3 class="text-xl font-bold mb-6 uppercase tracking-widest">Efficiency Metrics</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between text-[10px] font-bold uppercase mb-2"><span>Response Time</span><span class="text-neon">Instant</span></div>
+                            <div class="w-full bg-white/10 h-1 rounded-full"><div class="bg-neon h-full w-full"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-[10px] font-bold uppercase mb-2"><span>Launch Speed</span><span class="text-neon">Fast Track</span></div>
+                            <div class="w-full bg-white/10 h-1 rounded-full"><div class="bg-neon h-full w-[95%]"></div></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -168,24 +167,28 @@
 
     <section id="process" class="py-24 bg-black">
         <div class="container mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold mb-16">The <span class="text-neon">Empire</span> Roadmap</h2>
-            <div class="relative flex flex-col md:flex-row justify-between gap-8">
-                <div class="hidden md:block absolute top-12 left-0 w-full h-0.5 step-line -z-10"></div>
+            <h2 class="text-3xl font-bold mb-16 uppercase leading-tight">The <span class="text-neon">Roadmap</span></h2>
+            <div class="relative flex flex-col md:flex-row justify-between gap-12">
+                <div class="hidden md:block absolute top-12 left-0 w-full h-0.5 step-line -z-10 opacity-30"></div>
                 <div class="flex-1 group">
-                    <div class="w-24 h-24 rounded-full bg-zinc-900 border-4 border-neon/20 flex items-center justify-center mx-auto mb-6 group-hover:border-neon transition-all"><i data-lucide="search" class="text-neon"></i></div>
-                    <h3 class="font-bold">Discovery</h3>
+                    <div class="w-24 h-24 rounded-full bg-zinc-900 border-4 border-neon/20 flex items-center justify-center mx-auto mb-6 group-hover:border-neon transition-all shadow-xl shadow-neon/5"><i data-lucide="search" class="text-neon"></i></div>
+                    <h3 class="font-bold uppercase tracking-tighter mb-2">Discovery</h3>
+                    <p class="text-gray-500 text-xs font-light leading-relaxed px-4">Analyzing your business goals and target audience to build a solid foundation.</p>
                 </div>
                 <div class="flex-1 group">
-                    <div class="w-24 h-24 rounded-full bg-zinc-900 border-4 border-neon/20 flex items-center justify-center mx-auto mb-6 group-hover:border-neon transition-all"><i data-lucide="layers" class="text-neon"></i></div>
-                    <h3 class="font-bold">Strategy</h3>
+                    <div class="w-24 h-24 rounded-full bg-zinc-900 border-4 border-neon/20 flex items-center justify-center mx-auto mb-6 group-hover:border-neon transition-all shadow-xl shadow-neon/5"><i data-lucide="layers" class="text-neon"></i></div>
+                    <h3 class="font-bold uppercase tracking-tighter mb-2">Strategy</h3>
+                    <p class="text-gray-500 text-xs font-light leading-relaxed px-4">Custom-tailored roadmap designed to maximize ROI and outperform competitors.</p>
                 </div>
                 <div class="flex-1 group">
-                    <div class="w-24 h-24 rounded-full bg-zinc-900 border-4 border-neon/20 flex items-center justify-center mx-auto mb-6 group-hover:border-neon transition-all"><i data-lucide="code" class="text-neon"></i></div>
-                    <h3 class="font-bold">Launch</h3>
+                    <div class="w-24 h-24 rounded-full bg-zinc-900 border-4 border-neon/20 flex items-center justify-center mx-auto mb-6 group-hover:border-neon transition-all shadow-xl shadow-neon/5"><i data-lucide="code" class="text-neon"></i></div>
+                    <h3 class="font-bold uppercase tracking-tighter mb-2">Launch</h3>
+                    <p class="text-gray-500 text-xs font-light leading-relaxed px-4">Fast execution and precision building of your digital assets and campaigns.</p>
                 </div>
                 <div class="flex-1 group">
-                    <div class="w-24 h-24 rounded-full bg-zinc-900 border-4 border-neon/20 flex items-center justify-center mx-auto mb-6 group-hover:border-neon transition-all"><i data-lucide="rocket" class="text-neon"></i></div>
-                    <h3 class="font-bold">Scale</h3>
+                    <div class="w-24 h-24 rounded-full bg-zinc-900 border-4 border-neon/20 flex items-center justify-center mx-auto mb-6 group-hover:border-neon transition-all shadow-xl shadow-neon/5"><i data-lucide="rocket" class="text-neon"></i></div>
+                    <h3 class="font-bold uppercase tracking-tighter mb-2">Scale</h3>
+                    <p class="text-gray-500 text-xs font-light leading-relaxed px-4">Continuous optimization and data-driven scaling to dominate your niche.</p>
                 </div>
             </div>
         </div>
@@ -193,41 +196,33 @@
 
     <section id="contact" class="py-24 bg-zinc-900">
         <div class="container mx-auto px-6">
-            <div class="glass-panel rounded-3xl overflow-hidden flex flex-col lg:flex-row">
-                <div class="lg:w-1/3 p-12 bg-black/40">
-                    <h2 class="text-3xl font-black mb-8 text-neon">Let's Talk.</h2>
+            <div class="glass-panel rounded-3xl overflow-hidden flex flex-col lg:flex-row shadow-2xl">
+                <div class="lg:w-1/3 p-12 bg-black/40 border-r border-white/5">
+                    <h2 class="text-2xl font-bold mb-8 uppercase text-neon tracking-tighter">Connect</h2>
                     <div class="space-y-6">
-                        <div><p class="text-xs text-gray-500 uppercase mb-1">WhatsApp</p><p class="font-bold">+91-93398-12593</p></div>
-                        <div><p class="text-xs text-gray-500 uppercase mb-1">Email</p><p class="font-bold text-sm">digigenie.business@gmail.com</p></div>
-                        <div><p class="text-xs text-gray-500 uppercase mb-1">Office</p><p class="font-bold">Kolkata, India</p></div>
-                    </div>
-                    <div class="mt-12 h-48 rounded-xl overflow-hidden grayscale invert brightness-50">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d230660.8692398539!2d88.1322606626574!3d22.535406454790077!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f882db4908f667%3A0x43e330e68f6c2cbc!2sKolkata%2C%20West%20Bengal!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" class="w-full h-full border-0"></iframe>
+                        <div><p class="text-[10px] text-gray-500 uppercase font-black mb-1">WhatsApp</p><p class="font-bold">+91-93398-12593</p></div>
+                        <div><p class="text-[10px] text-gray-500 uppercase font-black mb-1">Email</p><p class="font-bold text-sm">digigenie.business@gmail.com</p></div>
+                        <div><p class="text-[10px] text-gray-500 uppercase font-black mb-1">Location</p><p class="font-bold">Kolkata, India</p></div>
                     </div>
                 </div>
                 <div class="lg:w-2/3 p-12 bg-black/20">
+                    <h2 class="text-3xl font-bold mb-8 uppercase tracking-tighter">Let us <span class="text-neon">reach you.</span></h2>
                     <form class="space-y-6">
                         <div class="grid md:grid-cols-2 gap-6">
-                            <input type="text" placeholder="Your Name" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-neon">
-                            <input type="tel" placeholder="Contact Number" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-neon">
+                            <input type="text" placeholder="Full Name" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-neon font-light">
+                            <input type="tel" placeholder="Contact Number" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-neon font-light">
                         </div>
-                        <input type="email" placeholder="Business Email" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-neon">
-                        
-                        <div>
-                            <label class="text-xs font-bold text-gray-500 uppercase block mb-2 px-2">Select Service</label>
-                            <select class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-neon text-gray-400 appearance-none">
-                                <option>Website Building</option>
-                                <option>Social Video Creation</option>
-                                <option>Instagram Optimization</option>
-                                <option>Google Business (GMB)</option>
-                                <option>Business Site Registration</option>
-                                <option>Full Digital Growth Package</option>
-                            </select>
-                        </div>
-
-                        <textarea rows="4" placeholder="How can we help you grow? (Custom Message)" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-neon"></textarea>
-                        
-                        <button class="w-full py-5 bg-neon text-black font-black rounded-xl hover:scale-[1.01] transition-transform shadow-lg">SEND GROWTH REQUEST</button>
+                        <input type="email" placeholder="Business Email" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-neon font-light">
+                        <select class="w-full bg-black border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-neon text-gray-400 font-light">
+                            <option>Website Building</option>
+                            <option>Social Video Creation</option>
+                            <option>Instagram Optimization</option>
+                            <option>Google Business (GMB)</option>
+                            <option>Business Site Registration</option>
+                            <option>Others</option>
+                        </select>
+                        <textarea rows="4" placeholder="How can we help you grow?" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-neon font-light"></textarea>
+                        <button class="w-full py-5 bg-neon text-black font-black rounded-xl hover:scale-[1.01] transition-transform uppercase text-xs tracking-[0.2em]">Launch Project</button>
                     </form>
                 </div>
             </div>
@@ -235,81 +230,43 @@
     </section>
 
     <div id="serviceModal" class="fixed inset-0 hidden modal-bg p-6 flex items-center justify-center">
-        <div class="glass-panel w-full max-w-2xl rounded-3xl p-8 md:p-12 relative">
-            <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-500 hover:text-neon">
-                <i data-lucide="x" class="w-8 h-8"></i>
-            </button>
+        <div class="glass-panel w-full max-w-2xl rounded-3xl p-8 md:p-12 relative border-neon/20">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-500 hover:text-neon"><i data-lucide="x" class="w-8 h-8"></i></button>
             <div id="modalContent" class="space-y-6"></div>
         </div>
     </div>
 
-    <a href="https://wa.me/919339812593" target="_blank" class="fixed bottom-8 right-8 z-[100] bg-[#25D366] p-4 rounded-full shadow-2xl hover:scale-110 transition-transform group">
-        <div class="absolute -top-12 right-0 bg-white text-black text-xs font-bold px-3 py-1 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">Chat with the Genie!</div>
+    <a href="https://wa.me/919339812593" target="_blank" class="fixed bottom-8 right-8 z-[100] bg-[#25D366] p-4 rounded-full shadow-2xl hover:scale-110 transition-transform">
         <i data-lucide="message-circle" class="w-8 h-8 text-white"></i>
     </a>
 
-    <footer class="py-12 text-center text-gray-600 border-t border-white/5">
-        <p>© 2026 DigiGenie Digital Agency. Kolkata, India.</p>
+    <footer class="py-12 text-center text-gray-600 border-t border-white/5 text-[10px] font-bold uppercase tracking-widest">
+        <p>© 2026 DigiGenie Agency. Built for results.</p>
     </footer>
 
     <script>
         lucide.createIcons();
-
         const modalData = {
-            'web': {
-                title: 'Website Building',
-                desc: 'Fast, secure, and sales-focused digital architecture.',
-                points: ['Full-stack Custom Development', 'Google Speed Score 95+', 'E-commerce Ready', 'SEO Foundation Built-in']
-            },
-            'video': {
-                title: 'Video Marketing',
-                desc: 'Content that stops the scroll and starts the conversation.',
-                points: ['Short-form Reels & TikToks', 'Professional Sound Design', 'Engagement-focused Hooks', 'Brand-aligned Visuals']
-            },
-            'ig-profile': {
-                title: 'IG Profile Optimization',
-                desc: 'Turn your profile into an authority landing page.',
-                points: ['Bio Re-writing', 'Story Highlight Branding', 'Grid Planning', 'Link-in-bio Strategy']
-            },
-            'ig-posts': {
-                title: 'Instagram Creative Posts',
-                desc: 'Consistent, premium graphics to keep your audience hooked.',
-                points: ['Custom Carousel Design', 'Educational Graphics', 'Branded Templates', 'Growth Captions']
-            },
-            'gmb': {
-                title: 'Google Business (GMB)',
-                desc: 'Local search dominance on Maps and Search results.',
-                points: ['Profile Setup & Verification', 'Local Keyword Optimization', 'Photo/Review Management', 'Map Ranking Strategy']
-            },
-            'registration': {
-                title: 'Business Infrastructure',
-                desc: 'Setting up the legal and technical foundation for your brand.',
-                points: ['Domain & Hosting Management', 'Professional Email Setup', 'Global Directory Submissions', 'Business Verification Help']
-            }
+            'web': { title: 'Web Empire', desc: 'Custom digital architecture built for speed and sales.', points: ['Custom Development', 'SEO-Ready Structure', 'E-commerce Capable'] },
+            'video': { title: 'Viral Video', desc: 'Capturing modern attention with high-impact content.', points: ['Trending Reels', 'Pro Audio/Visuals', 'Viral Hooks'] },
+            'ig-profile': { title: 'IG Profile', desc: 'Turn your profile into a high-converting landing page.', points: ['Bio Optimization', 'Highlight Branding', 'Keyword Strategy'] },
+            'ig-posts': { title: 'IG Posts', desc: 'Premium designs that keep your audience scrolling.', points: ['Custom Carousels', 'Branded Graphics', 'Monthly Content'] },
+            'gmb': { title: 'Google GMB', desc: 'Own your local market on Search and Maps.', points: ['Verification Help', 'Map SEO Ranking', 'Review Management'] },
+            'registration': { title: 'Registration', desc: 'Technical foundation for a global presence.', points: ['Domain/Hosting', 'Business Directory', 'Site Registration'] }
         };
 
         function openModal(service) {
             const data = modalData[service];
-            const content = `
-                <h2 class="text-4xl font-black text-neon">${data.title}</h2>
-                <p class="text-gray-400 text-lg">${data.desc}</p>
-                <div class="grid md:grid-cols-2 gap-4">
-                    ${data.points.map(p => `<div class="flex items-center gap-3 text-sm text-gray-200 bg-white/5 p-3 rounded-lg"><i data-lucide="check" class="text-neon w-4"></i> ${p}</div>`).join('')}
-                </div>
-                <div class="mt-8 pt-6 border-t border-white/10 text-center">
-                    <a href="#contact" onclick="closeModal()" class="bg-neon text-black font-bold px-10 py-3 rounded-lg inline-block">Book This Now</a>
-                </div>
+            document.getElementById('modalContent').innerHTML = `
+                <h2 class="text-3xl font-bold text-neon uppercase">${data.title}</h2>
+                <p class="text-gray-400 font-light">${data.desc}</p>
+                <div class="grid md:grid-cols-2 gap-4">${data.points.map(p => `<div class="bg-white/5 p-4 rounded-xl text-xs font-bold uppercase border border-white/10"><i data-lucide="check" class="inline w-4 mr-2 text-neon"></i>${p}</div>`).join('')}</div>
+                <div class="pt-6"><a href="#contact" onclick="closeModal()" class="bg-neon text-black font-bold px-10 py-3 rounded-lg inline-block text-[10px] uppercase tracking-widest">Inquire Now</a></div>
             `;
-            document.getElementById('modalContent').innerHTML = content;
-            document.getElementById('serviceModal').classList.remove('hidden');
-            document.getElementById('serviceModal').classList.add('flex');
+            document.getElementById('serviceModal').classList.replace('hidden', 'flex');
             lucide.createIcons();
         }
-
-        function closeModal() {
-            document.getElementById('serviceModal').classList.add('hidden');
-            document.getElementById('serviceModal').classList.remove('flex');
-        }
+        function closeModal() { document.getElementById('serviceModal').classList.replace('flex', 'hidden'); }
     </script>
 </body>
 </html>
