@@ -25,8 +25,10 @@
         body { background-color: #000; color: #fff; overflow-x: hidden; }
         ::selection { background-color: #00FF6A; color: #000; }
         .glass-panel { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .modal-bg { background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(8px); }
+        .modal-bg { background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(8px); z-index: 100; }
         .step-line { background: linear-gradient(90deg, #00FF6A 0%, rgba(0, 255, 106, 0) 100%); }
+        
+        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #111; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
@@ -61,18 +63,16 @@
 
     <header class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2026&auto=format&fit=crop" alt="Growth Data" class="w-full h-full object-cover opacity-20 scale-110 animate-pulse-slow">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2026&auto=format&fit=crop" alt="Growth Data" class="w-full h-full object-cover opacity-20">
             <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
         </div>
         <div class="container mx-auto px-6 relative z-10 text-center">
             <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-300 text-xs font-bold tracking-widest uppercase mb-8">
-                🚀 Data-Driven Scaling Agency
+                🚀 Faster Delivery. Smarter Solutions.
             </div>
-            <h1 class="text-6xl md:text-8xl font-black mb-6 leading-tight">Your Vision. <br/>Our <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon via-emerald-400 to-cyan-500">Digital Magic.</span></h1>
-            <p class="text-gray-400 text-xl max-w-3xl mx-auto mb-10 leading-relaxed">We transform local businesses into dominant digital authorities through high-speed architecture and scroll-stopping content.</p>
-            <div class="flex justify-center gap-6">
-                <a href="#contact" class="px-10 py-4 bg-neon text-black font-black rounded-full hover:shadow-[0_0_30px_rgba(0,255,106,0.5)] transition-all">Claim Free Consultation</a>
-            </div>
+            <h1 class="text-6xl md:text-8xl font-black mb-6 leading-tight">Master the <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-neon via-emerald-400 to-cyan-500">Digital Realm.</span></h1>
+            <p class="text-gray-400 text-xl max-w-3xl mx-auto mb-10">Kolkata's premier agency for local businesses ready to dominate globally.</p>
+            <a href="#contact" class="px-10 py-4 bg-neon text-black font-black rounded-full hover:shadow-[0_0_30px_rgba(0,255,106,0.5)] transition-all">Claim Free Consultation</a>
         </div>
     </header>
 
@@ -80,78 +80,129 @@
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold mb-4">Our <span class="text-neon">Growth Services</span></h2>
-                <p class="text-gray-500 italic">Click a service to see how we build your empire</p>
+                <p class="text-gray-500">Click a card to see our specialized deliverables.</p>
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                
                 <div class="service-card glass-panel p-8 rounded-2xl" onclick="openModal('web')">
-                    <i data-lucide="code" class="text-neon mb-6"></i>
+                    <i data-lucide="monitor" class="text-neon mb-6"></i>
                     <h3 class="text-xl font-bold mb-2">Website Building</h3>
-                    <p class="text-gray-400 text-sm mb-4">Custom-coded, high-performance business engines.</p>
-                    <div class="text-neon text-xs font-bold flex items-center gap-2">VIEW DETAILS <i data-lucide="plus-circle" class="w-4"></i></div>
+                    <p class="text-gray-400 text-sm mb-4">High-speed business sites.</p>
+                    <span class="text-neon text-xs font-bold uppercase tracking-widest">Details +</span>
                 </div>
-
                 <div class="service-card glass-panel p-8 rounded-2xl" onclick="openModal('video')">
                     <i data-lucide="video" class="text-neon mb-6"></i>
                     <h3 class="text-xl font-bold mb-2">Social Video Creation</h3>
-                    <p class="text-gray-400 text-sm mb-4">Reels and TikToks designed to go viral.</p>
-                    <div class="text-neon text-xs font-bold flex items-center gap-2">VIEW DETAILS <i data-lucide="plus-circle" class="w-4"></i></div>
+                    <p class="text-gray-400 text-sm mb-4">Viral Reels & TikToks.</p>
+                    <span class="text-neon text-xs font-bold uppercase tracking-widest">Details +</span>
                 </div>
-
                 <div class="service-card glass-panel p-8 rounded-2xl" onclick="openModal('ig-profile')">
                     <i data-lucide="instagram" class="text-neon mb-6"></i>
                     <h3 class="text-xl font-bold mb-2">Instagram Profile</h3>
-                    <p class="text-gray-400 text-sm mb-4">Authority-building profile & bio optimization.</p>
-                    <div class="text-neon text-xs font-bold flex items-center gap-2">VIEW DETAILS <i data-lucide="plus-circle" class="w-4"></i></div>
+                    <p class="text-gray-400 text-sm mb-4">Profile & Bio Optimization.</p>
+                    <span class="text-neon text-xs font-bold uppercase tracking-widest">Details +</span>
                 </div>
-
                 <div class="service-card glass-panel p-8 rounded-2xl" onclick="openModal('ig-posts')">
                     <i data-lucide="layout" class="text-neon mb-6"></i>
                     <h3 class="text-xl font-bold mb-2">Instagram Posts</h3>
-                    <p class="text-gray-400 text-sm mb-4">Scroll-stopping graphics and carousels.</p>
-                    <div class="text-neon text-xs font-bold flex items-center gap-2">VIEW DETAILS <i data-lucide="plus-circle" class="w-4"></i></div>
+                    <p class="text-gray-400 text-sm mb-4">Creative Branded Content.</p>
+                    <span class="text-neon text-xs font-bold uppercase tracking-widest">Details +</span>
                 </div>
-
                 <div class="service-card glass-panel p-8 rounded-2xl" onclick="openModal('gmb')">
                     <i data-lucide="map-pin" class="text-neon mb-6"></i>
                     <h3 class="text-xl font-bold mb-2">Google Business (GMB)</h3>
-                    <p class="text-gray-400 text-sm mb-4">Local Map rankings and 5-star profile setup.</p>
-                    <div class="text-neon text-xs font-bold flex items-center gap-2">VIEW DETAILS <i data-lucide="plus-circle" class="w-4"></i></div>
+                    <p class="text-gray-400 text-sm mb-4">Map rankings & Local SEO.</p>
+                    <span class="text-neon text-xs font-bold uppercase tracking-widest">Details +</span>
                 </div>
-
                 <div class="service-card glass-panel p-8 rounded-2xl" onclick="openModal('registration')">
                     <i data-lucide="globe" class="text-neon mb-6"></i>
                     <h3 class="text-xl font-bold mb-2">Business Registration</h3>
-                    <p class="text-gray-400 text-sm mb-4">Directory listings and domain registrations.</p>
-                    <div class="text-neon text-xs font-bold flex items-center gap-2">VIEW DETAILS <i data-lucide="plus-circle" class="w-4"></i></div>
+                    <p class="text-gray-400 text-sm mb-4">Domain & Directory Setup.</p>
+                    <span class="text-neon text-xs font-bold uppercase tracking-widest">Details +</span>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <div id="serviceModal" class="fixed inset-0 z-[100] hidden modal-bg p-6 flex items-center justify-center">
-        <div class="glass-panel w-full max-w-2xl rounded-3xl p-8 md:p-12 relative">
-            <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-500 hover:text-neon">
-                <i data-lucide="x" class="w-8 h-8"></i>
-            </button>
-            <div id="modalContent" class="space-y-6">
+    <section id="why-us" class="py-24 bg-zinc-950 border-y border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-4xl font-bold mb-8">How We Outpace <br/><span class="text-neon">The Competition</span></h2>
+                    <div class="space-y-8">
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-neon/10 flex items-center justify-center"><i data-lucide="clock" class="text-neon"></i></div>
+                            <div>
+                                <h4 class="text-xl font-bold">Timely Delivery</h4>
+                                <p class="text-gray-400 text-sm">We value time as much as you do. Our streamlined workflow ensures projects are launched in days, not months.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-neon/10 flex items-center justify-center"><i data-lucide="zap" class="text-neon"></i></div>
+                            <div>
+                                <h4 class="text-xl font-bold">Quick Solutions</h4>
+                                <p class="text-gray-400 text-sm">No "technical fluff." We provide direct, effective solutions to immediate business hurdles like low traffic or poor engagement.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-neon/10 flex items-center justify-center"><i data-lucide="shield-check" class="text-neon"></i></div>
+                            <div>
+                                <h4 class="text-xl font-bold">Business-First Approach</h4>
+                                <p class="text-gray-400 text-sm">We don't just design; we build tools that make you money. Every pixel serves a sales purpose.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            <div class="mt-10 pt-6 border-t border-white/10">
-                <a href="#contact" onclick="closeModal()" class="inline-block bg-neon text-black font-bold px-8 py-3 rounded-lg">Get This Service</a>
+                <div class="glass-panel p-12 rounded-3xl border-neon/20 relative">
+                    <div class="absolute -top-6 -right-6 bg-neon text-black font-black px-6 py-2 rounded-lg rotate-12 shadow-xl">PREMIUM</div>
+                    <h3 class="text-2xl font-bold mb-6">The Genie Advantage</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between text-sm"><span class="text-gray-400">Launch Speed</span><span class="text-neon font-bold">48-72 Hours</span></div>
+                        <div class="w-full bg-white/10 h-1 rounded-full"><div class="bg-neon h-full w-full"></div></div>
+                        <div class="flex justify-between text-sm mt-4"><span class="text-gray-400">Customer Support</span><span class="text-neon font-bold">Instant / 24x7</span></div>
+                        <div class="w-full bg-white/10 h-1 rounded-full"><div class="bg-neon h-full w-full"></div></div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <section id="process" class="py-24 bg-black">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-16">The <span class="text-neon">Empire</span> Roadmap</h2>
+            <div class="relative flex flex-col md:flex-row justify-between gap-8">
+                <div class="hidden md:block absolute top-12 left-0 w-full h-0.5 step-line -z-10"></div>
+                <div class="flex-1 group">
+                    <div class="w-24 h-24 rounded-full bg-zinc-900 border-4 border-neon/20 flex items-center justify-center mx-auto mb-6 group-hover:border-neon transition-all"><i data-lucide="search" class="text-neon"></i></div>
+                    <h3 class="font-bold">Discovery</h3>
+                </div>
+                <div class="flex-1 group">
+                    <div class="w-24 h-24 rounded-full bg-zinc-900 border-4 border-neon/20 flex items-center justify-center mx-auto mb-6 group-hover:border-neon transition-all"><i data-lucide="layers" class="text-neon"></i></div>
+                    <h3 class="font-bold">Strategy</h3>
+                </div>
+                <div class="flex-1 group">
+                    <div class="w-24 h-24 rounded-full bg-zinc-900 border-4 border-neon/20 flex items-center justify-center mx-auto mb-6 group-hover:border-neon transition-all"><i data-lucide="code" class="text-neon"></i></div>
+                    <h3 class="font-bold">Launch</h3>
+                </div>
+                <div class="flex-1 group">
+                    <div class="w-24 h-24 rounded-full bg-zinc-900 border-4 border-neon/20 flex items-center justify-center mx-auto mb-6 group-hover:border-neon transition-all"><i data-lucide="rocket" class="text-neon"></i></div>
+                    <h3 class="font-bold">Scale</h3>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section id="contact" class="py-24 bg-zinc-900">
         <div class="container mx-auto px-6">
             <div class="glass-panel rounded-3xl overflow-hidden flex flex-col lg:flex-row">
                 <div class="lg:w-1/3 p-12 bg-black/40">
-                    <h2 class="text-3xl font-black mb-8 text-neon">Let's Build It.</h2>
-                    <div class="space-y-8">
-                        <div><p class="text-xs text-gray-500 uppercase mb-1">Direct Line</p><p class="font-bold">+91-93398-12593</p></div>
-                        <div><p class="text-xs text-gray-500 uppercase mb-1">Email Genie</p><p class="font-bold">digigenie.business@gmail.com</p></div>
-                        <div><p class="text-xs text-gray-500 uppercase mb-1">Empire Hub</p><p class="font-bold">Kolkata, India</p></div>
+                    <h2 class="text-3xl font-black mb-8 text-neon">Let's Talk.</h2>
+                    <div class="space-y-6">
+                        <div><p class="text-xs text-gray-500 uppercase mb-1">WhatsApp</p><p class="font-bold">+91-93398-12593</p></div>
+                        <div><p class="text-xs text-gray-500 uppercase mb-1">Email</p><p class="font-bold text-sm">digigenie.business@gmail.com</p></div>
+                        <div><p class="text-xs text-gray-500 uppercase mb-1">Office</p><p class="font-bold">Kolkata, India</p></div>
+                    </div>
+                    <div class="mt-12 h-48 rounded-xl overflow-hidden grayscale invert brightness-50">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d230660.8692398539!2d88.1322606626574!3d22.535406454790077!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f882db4908f667%3A0x43e330e68f6c2cbc!2sKolkata%2C%20West%20Bengal!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" class="w-full h-full border-0"></iframe>
                     </div>
                 </div>
                 <div class="lg:w-2/3 p-12 bg-black/20">
@@ -161,51 +212,79 @@
                             <input type="tel" placeholder="Contact Number" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-neon">
                         </div>
                         <input type="email" placeholder="Business Email" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-neon">
-                        <textarea rows="4" placeholder="How can we help you grow?" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-neon"></textarea>
-                        <button class="w-full py-5 bg-neon text-black font-black rounded-xl hover:scale-[1.02] transition-transform">SUBMIT GROWTH REQUEST</button>
+                        
+                        <div>
+                            <label class="text-xs font-bold text-gray-500 uppercase block mb-2 px-2">Select Service</label>
+                            <select class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-neon text-gray-400 appearance-none">
+                                <option>Website Building</option>
+                                <option>Social Video Creation</option>
+                                <option>Instagram Optimization</option>
+                                <option>Google Business (GMB)</option>
+                                <option>Business Site Registration</option>
+                                <option>Full Digital Growth Package</option>
+                            </select>
+                        </div>
+
+                        <textarea rows="4" placeholder="How can we help you grow? (Custom Message)" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-neon"></textarea>
+                        
+                        <button class="w-full py-5 bg-neon text-black font-black rounded-xl hover:scale-[1.01] transition-transform shadow-lg">SEND GROWTH REQUEST</button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <a href="https://wa.me/919339812593" target="_blank" class="fixed bottom-8 right-8 z-[100] bg-[#25D366] p-4 rounded-full shadow-2xl hover:scale-110 transition-transform">
+    <div id="serviceModal" class="fixed inset-0 hidden modal-bg p-6 flex items-center justify-center">
+        <div class="glass-panel w-full max-w-2xl rounded-3xl p-8 md:p-12 relative">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-500 hover:text-neon">
+                <i data-lucide="x" class="w-8 h-8"></i>
+            </button>
+            <div id="modalContent" class="space-y-6"></div>
+        </div>
+    </div>
+
+    <a href="https://wa.me/919339812593" target="_blank" class="fixed bottom-8 right-8 z-[100] bg-[#25D366] p-4 rounded-full shadow-2xl hover:scale-110 transition-transform group">
+        <div class="absolute -top-12 right-0 bg-white text-black text-xs font-bold px-3 py-1 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">Chat with the Genie!</div>
         <i data-lucide="message-circle" class="w-8 h-8 text-white"></i>
     </a>
+
+    <footer class="py-12 text-center text-gray-600 border-t border-white/5">
+        <p>© 2026 DigiGenie Digital Agency. Kolkata, India.</p>
+    </footer>
 
     <script>
         lucide.createIcons();
 
         const modalData = {
             'web': {
-                title: 'Website Building Empire',
-                desc: 'We build digital storefronts that don\'t just look good—they sell.',
-                points: ['Full-stack Custom Development', 'Google PageSpeed Optimized (95+)', 'E-commerce & Lead Gen Integration', 'Mobile-First UI/UX Design']
+                title: 'Website Building',
+                desc: 'Fast, secure, and sales-focused digital architecture.',
+                points: ['Full-stack Custom Development', 'Google Speed Score 95+', 'E-commerce Ready', 'SEO Foundation Built-in']
             },
             'video': {
-                title: 'Viral Video Creation',
-                desc: 'Short-form content designed for the modern attention economy.',
-                points: ['High-Retention Reels/TikToks', 'Professional Sound Design', 'Trending Visual Effects', 'Subtitled & Engagement-Optimized']
+                title: 'Video Marketing',
+                desc: 'Content that stops the scroll and starts the conversation.',
+                points: ['Short-form Reels & TikToks', 'Professional Sound Design', 'Engagement-focused Hooks', 'Brand-aligned Visuals']
             },
             'ig-profile': {
-                title: 'Instagram Authority Setup',
-                desc: 'Your profile is your digital business card. Make it count.',
-                points: ['Bio Optimization', 'Story Highlight Branding', 'Grid Layout Strategy', 'Keyword-Targeted Handles']
+                title: 'IG Profile Optimization',
+                desc: 'Turn your profile into an authority landing page.',
+                points: ['Bio Re-writing', 'Story Highlight Branding', 'Grid Planning', 'Link-in-bio Strategy']
             },
             'ig-posts': {
-                title: 'High-Impact Posts',
-                desc: 'Consistent, premium graphics that maintain your brand voice.',
-                points: ['Custom Branded Templates', 'Educational Carousels', 'Interactive Story Graphics', 'Monthly Content Calendar']
+                title: 'Instagram Creative Posts',
+                desc: 'Consistent, premium graphics to keep your audience hooked.',
+                points: ['Custom Carousel Design', 'Educational Graphics', 'Branded Templates', 'Growth Captions']
             },
             'gmb': {
-                title: 'Google Maps Dominance',
-                desc: 'Capture customers exactly when they are searching for you.',
-                points: ['GMB Profile Setup & Verification', 'Local SEO Ranking Strategy', 'Review Management Systems', 'Photo & Update Optimization']
+                title: 'Google Business (GMB)',
+                desc: 'Local search dominance on Maps and Search results.',
+                points: ['Profile Setup & Verification', 'Local Keyword Optimization', 'Photo/Review Management', 'Map Ranking Strategy']
             },
             'registration': {
                 title: 'Business Infrastructure',
-                desc: 'The technical foundation for a globally recognized brand.',
-                points: ['Domain & Hosting Setup', 'Professional Business Emails', 'Global Business Directory Listings', 'SEO Backlink Foundation']
+                desc: 'Setting up the legal and technical foundation for your brand.',
+                points: ['Domain & Hosting Management', 'Professional Email Setup', 'Global Directory Submissions', 'Business Verification Help']
             }
         };
 
@@ -216,6 +295,9 @@
                 <p class="text-gray-400 text-lg">${data.desc}</p>
                 <div class="grid md:grid-cols-2 gap-4">
                     ${data.points.map(p => `<div class="flex items-center gap-3 text-sm text-gray-200 bg-white/5 p-3 rounded-lg"><i data-lucide="check" class="text-neon w-4"></i> ${p}</div>`).join('')}
+                </div>
+                <div class="mt-8 pt-6 border-t border-white/10 text-center">
+                    <a href="#contact" onclick="closeModal()" class="bg-neon text-black font-bold px-10 py-3 rounded-lg inline-block">Book This Now</a>
                 </div>
             `;
             document.getElementById('modalContent').innerHTML = content;
