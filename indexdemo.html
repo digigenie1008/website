@@ -1,0 +1,1807 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darshini's World of Music | Premium Music Classes in Ahmedabad</title>
+    <meta name="description" content="Learn Piano, Keyboard, Guitar, and Vocals with Darshini Doshi. Professional coaching in Ahmedabad for kids, teens, and adults.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --ink: #0a0a0a;
+        --cream: #F5EFE6;
+        --rose: #E8325A;
+        --gold: #C9A84C;
+        --gold-light: #F0D483;
+        --sage: #5C7A5A;
+        --blush: #F9DDD5;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: 'DM Sans', sans-serif;
+        background-color: var(--cream);
+        color: var(--ink);
+        overflow-x: hidden;
+        cursor: none;
+      }
+
+      /* CUSTOM CURSOR */
+      .cursor {
+        width: 12px;
+        height: 12px;
+        background: var(--rose);
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        transition: transform 0.15s ease, background 0.2s;
+        transform: translate(-50%, -50%);
+      }
+
+      .cursor-ring {
+        width: 36px;
+        height: 36px;
+        border: 1.5px solid var(--rose);
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9998;
+        transition: all 0.3s ease;
+        transform: translate(-50%, -50%);
+        opacity: 0.5;
+      }
+
+      a:hover~.cursor,
+      button:hover~.cursor {
+        transform: translate(-50%, -50%) scale(2.5);
+      }
+
+      /* MARQUEE */
+      .marquee-wrapper {
+        overflow: hidden;
+        background: var(--rose);
+        padding: 10px 0;
+        white-space: nowrap;
+      }
+
+      .marquee-track {
+        display: inline-flex;
+        animation: marquee 40s linear infinite;
+      }
+
+      .marquee-track span {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.1rem;
+        letter-spacing: 0.15em;
+        color: #fff;
+        padding: 0 2rem;
+      }
+
+      .marquee-track span.dot {
+        color: var(--gold-light);
+      }
+
+      @keyframes marquee {
+        from {
+          transform: translateX(0);
+        }
+
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        width: 100%;
+        z-index: 100;
+        top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 3rem;
+        height: 72px;
+        background: rgba(245, 239, 230, 0.85);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(10, 10, 10, 0.08);
+      }
+
+      .nav-logo {
+        display: flex;
+        flex-direction: column;
+        line-height: 1;
+      }
+
+      .nav-logo .big {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.6rem;
+        letter-spacing: 0.05em;
+        color: var(--ink);
+      }
+
+      .nav-logo .small {
+        font-size: 0.6rem;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: var(--rose);
+        font-weight: 500;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        align-items: center;
+      }
+
+      .nav-links a {
+        font-size: 0.75rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--ink);
+        text-decoration: none;
+        position: relative;
+        transition: color 0.2s;
+      }
+
+      .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 0;
+        height: 1.5px;
+        background: var(--rose);
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: var(--rose);
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      .nav-cta {
+        background: var(--ink);
+        color: var(--cream) !important;
+        padding: 0.55rem 1.4rem;
+        border-radius: 2px;
+        font-size: 0.7rem !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.2em !important;
+        text-transform: uppercase;
+        transition: background 0.2s, color 0.2s !important;
+        text-decoration: none;
+      }
+
+      .nav-cta:hover {
+        background: var(--rose) !important;
+        color: #fff !important;
+      }
+
+      .nav-cta::after {
+        display: none !important;
+      }
+
+      /* HERO */
+      #hero {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding-top: 72px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-left {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 5rem 3rem 5rem 4rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-eyebrow {
+        font-size: 0.65rem;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        color: var(--rose);
+        font-weight: 500;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .hero-eyebrow::before {
+        content: '';
+        display: inline-block;
+        width: 2rem;
+        height: 1px;
+        background: var(--rose);
+      }
+
+      .hero-h1 {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(5rem, 10vw, 9rem);
+        line-height: 0.9;
+        letter-spacing: 0.02em;
+        color: var(--ink);
+        margin-bottom: 0.5rem;
+      }
+
+      .hero-h1 .italic-serif {
+        font-family: 'Cormorant Garamond', serif;
+        font-style: italic;
+        font-weight: 300;
+        font-size: clamp(3.5rem, 7vw, 6rem);
+        color: var(--rose);
+        display: block;
+        line-height: 1.1;
+        letter-spacing: 0.01em;
+      }
+
+      .hero-desc {
+        max-width: 360px;
+        font-size: 0.95rem;
+        color: #555;
+        line-height: 1.7;
+        margin: 2rem 0 2.5rem;
+        font-weight: 300;
+      }
+
+      .hero-desc strong {
+        color: var(--ink);
+        font-weight: 500;
+      }
+
+      .hero-btns {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .btn-primary {
+        background: var(--rose);
+        color: #fff;
+        padding: 1rem 2rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        text-decoration: none;
+        border-radius: 2px;
+        transition: transform 0.2s, box-shadow 0.2s;
+        display: inline-block;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(232, 50, 90, 0.35);
+      }
+
+      .btn-ghost {
+        color: var(--ink);
+        padding: 1rem 0;
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        text-decoration: none;
+        border-bottom: 1px solid var(--ink);
+        transition: color 0.2s, border-color 0.2s;
+      }
+
+      .btn-ghost:hover {
+        color: var(--rose);
+        border-color: var(--rose);
+      }
+
+      .hero-right {
+        position: relative;
+        background: var(--ink);
+        overflow: hidden;
+      }
+
+      .hero-img-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(232, 50, 90, 0.3) 0%, rgba(10, 10, 10, 0.5) 100%);
+        z-index: 1;
+      }
+
+      .hero-right-bg {
+        width: 100%;
+        height: 100%;
+        background-image: url('https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?auto=format&fit=crop&q=80');
+        background-size: cover;
+        background-position: center;
+        filter: grayscale(20%);
+        transition: transform 0.8s ease;
+      }
+
+      .hero-right:hover .hero-right-bg {
+        transform: scale(1.03);
+      }
+
+      .hero-badge {
+        position: absolute;
+        bottom: 3rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+        background: var(--gold);
+        color: var(--ink);
+        padding: 1rem 1.5rem;
+        text-align: center;
+        border-radius: 2px;
+        white-space: nowrap;
+      }
+
+      .hero-badge .num {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 2.2rem;
+        letter-spacing: 0.05em;
+        line-height: 1;
+      }
+
+      .hero-badge .label {
+        font-size: 0.55rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+
+      /* floating note */
+      .float-note {
+        position: absolute;
+        font-size: 8rem;
+        opacity: 0.04;
+        font-family: serif;
+        pointer-events: none;
+        animation: float 8s ease-in-out infinite;
+      }
+
+      @keyframes float {
+
+        0%,
+        100% {
+          transform: translateY(0) rotate(-8deg);
+        }
+
+        50% {
+          transform: translateY(-20px) rotate(8deg);
+        }
+      }
+
+      /* SECTION HEADER */
+      .section-label {
+        font-size: 0.6rem;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        color: var(--rose);
+        font-weight: 600;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .section-label::before {
+        content: '';
+        display: inline-block;
+        width: 1.5rem;
+        height: 1px;
+        background: var(--rose);
+      }
+
+      .section-title {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(3rem, 6vw, 5.5rem);
+        line-height: 0.92;
+        letter-spacing: 0.02em;
+      }
+
+      /* CLASSES */
+      #classes {
+        padding: 8rem 4rem;
+        background: var(--cream);
+      }
+
+      .classes-header {
+        margin-bottom: 4rem;
+      }
+
+      .classes-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5px;
+        background: var(--ink);
+        border: 1.5px solid var(--ink);
+      }
+
+      .class-card {
+        background: var(--cream);
+        padding: 3rem 2rem;
+        transition: background 0.3s, color 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .class-card::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background: var(--rose);
+        transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 0;
+      }
+
+      .class-card:hover::before {
+        height: 100%;
+      }
+
+      .class-card>* {
+        position: relative;
+        z-index: 1;
+      }
+
+      .class-card:hover {
+        color: #fff;
+      }
+
+      .class-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        display: block;
+        transition: transform 0.3s;
+      }
+
+      .class-card:hover .class-icon {
+        transform: scale(1.2) rotate(5deg);
+      }
+
+      .class-name {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 2.2rem;
+        letter-spacing: 0.04em;
+        margin-bottom: 0.75rem;
+        line-height: 1;
+      }
+
+      .class-desc {
+        font-size: 0.85rem;
+        line-height: 1.7;
+        color: #666;
+        transition: color 0.3s;
+        font-weight: 300;
+      }
+
+      .class-card:hover .class-desc {
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      .class-arrow {
+        margin-top: 1.5rem;
+        font-size: 1.2rem;
+        opacity: 0;
+        transition: opacity 0.3s, transform 0.3s;
+        display: inline-block;
+      }
+
+      .class-card:hover .class-arrow {
+        opacity: 1;
+        transform: translateX(4px);
+      }
+
+      /* ABOUT */
+      #about {
+        padding: 8rem 4rem;
+        background: var(--ink);
+        color: var(--cream);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6rem;
+        align-items: center;
+      }
+
+      .about-left .section-label {
+        color: var(--gold);
+      }
+
+      .about-left .section-label::before {
+        background: var(--gold);
+      }
+
+      .about-left .section-title {
+        color: var(--cream);
+      }
+
+      .about-left p {
+        margin-top: 1.5rem;
+        font-size: 0.95rem;
+        font-weight: 300;
+        color: rgba(245, 239, 230, 0.65);
+        line-height: 1.8;
+        max-width: 440px;
+      }
+
+      .perks {
+        margin-top: 3rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .perk {
+        display: flex;
+        gap: 1.25rem;
+        align-items: flex-start;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid rgba(245, 239, 230, 0.08);
+      }
+
+      .perk:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .perk-num {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 2rem;
+        color: var(--rose);
+        line-height: 1;
+        flex-shrink: 0;
+        width: 2.5rem;
+      }
+
+      .perk-title {
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 0.3rem;
+      }
+
+      .perk-desc {
+        font-size: 0.85rem;
+        font-weight: 300;
+        color: rgba(245, 239, 230, 0.55);
+        line-height: 1.6;
+      }
+
+      .about-right {
+        position: relative;
+      }
+
+      .about-img-frame {
+        width: 100%;
+        aspect-ratio: 3/4;
+        background: #1a1a1a;
+        border: 1px solid rgba(245, 239, 230, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .about-img-frame .placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(245, 239, 230, 0.15);
+        font-family: 'Cormorant Garamond', serif;
+        font-style: italic;
+        font-size: 1rem;
+      }
+
+      .about-badge {
+        position: absolute;
+        bottom: -1.5rem;
+        right: -1.5rem;
+        background: var(--gold);
+        color: var(--ink);
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .about-badge .num {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 2.5rem;
+        line-height: 1;
+      }
+
+      .about-badge .label {
+        font-size: 0.5rem;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      .about-decor {
+        position: absolute;
+        top: -1.5rem;
+        left: -1.5rem;
+        width: 80px;
+        height: 80px;
+        border: 2px solid var(--rose);
+        pointer-events: none;
+      }
+
+      /* TESTIMONIALS */
+      #testimonials {
+        padding: 8rem 4rem;
+        background: var(--blush);
+        overflow: hidden;
+      }
+
+      .testimonials-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 4rem;
+      }
+
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2px;
+      }
+
+      .testimonial-card {
+        background: var(--cream);
+        padding: 3rem 2.5rem;
+        position: relative;
+      }
+
+      .quote-mark {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 6rem;
+        color: var(--rose);
+        line-height: 0.5;
+        opacity: 0.2;
+        position: absolute;
+        top: 1.5rem;
+        left: 2rem;
+      }
+
+      .testimonial-text {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.15rem;
+        font-style: italic;
+        line-height: 1.7;
+        color: #333;
+        margin-top: 1.5rem;
+        font-weight: 300;
+      }
+
+      .testimonial-author {
+        margin-top: 2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .author-dot {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--rose);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 0.7rem;
+        font-weight: 700;
+      }
+
+      .author-name {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .author-role {
+        font-size: 0.7rem;
+        color: #888;
+      }
+
+      /* FAQ */
+      #faq {
+        padding: 8rem 4rem;
+        background: var(--cream);
+      }
+
+      .faq-layout {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: 6rem;
+        align-items: start;
+        margin-top: 4rem;
+      }
+
+      .faq-side-text {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.4rem;
+        font-style: italic;
+        font-weight: 300;
+        line-height: 1.7;
+        color: #555;
+      }
+
+      .faq-side-text strong {
+        color: var(--rose);
+        font-style: normal;
+      }
+
+      .faq-item {
+        border-top: 1px solid rgba(10, 10, 10, 0.12);
+      }
+
+      .faq-item:last-child {
+        border-bottom: 1px solid rgba(10, 10, 10, 0.12);
+      }
+
+      .faq-summary {
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        padding: 1.5rem 0;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style: none;
+        user-select: none;
+      }
+
+      .faq-summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .faq-toggle {
+        width: 28px;
+        height: 28px;
+        border: 1px solid var(--ink);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        transition: background 0.2s, transform 0.3s;
+        flex-shrink: 0;
+      }
+
+      details[open] .faq-toggle {
+        background: var(--rose);
+        border-color: var(--rose);
+        color: #fff;
+        transform: rotate(45deg);
+      }
+
+      .faq-body {
+        font-size: 0.88rem;
+        font-weight: 300;
+        color: #666;
+        line-height: 1.8;
+        padding-bottom: 1.5rem;
+      }
+
+      /* CONTACT */
+      #contact {
+        padding: 8rem 4rem;
+        background: var(--ink);
+        color: var(--cream);
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6rem;
+        margin-top: 4rem;
+        align-items: start;
+      }
+
+      #contact .section-label {
+        color: var(--gold);
+      }
+
+      #contact .section-label::before {
+        background: var(--gold);
+      }
+
+      #contact .section-title {
+        color: var(--cream);
+      }
+
+      .contact-info p {
+        font-size: 0.95rem;
+        font-weight: 300;
+        color: rgba(245, 239, 230, 0.6);
+        line-height: 1.8;
+        margin-top: 1.5rem;
+        max-width: 360px;
+      }
+
+      .contact-details {
+        margin-top: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+
+      .contact-detail {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+
+      .contact-detail-icon {
+        font-size: 1.1rem;
+        margin-top: 2px;
+        flex-shrink: 0;
+      }
+
+      .contact-detail-label {
+        font-size: 0.6rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--gold);
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+      }
+
+      .contact-detail-val {
+        font-size: 0.88rem;
+        color: rgba(245, 239, 230, 0.7);
+      }
+
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .form-label {
+        font-size: 0.6rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        font-weight: 600;
+        color: rgba(245, 239, 230, 0.5);
+      }
+
+      .form-input,
+      .form-select,
+      .form-textarea {
+        background: rgba(245, 239, 230, 0.05);
+        border: 1px solid rgba(245, 239, 230, 0.1);
+        color: var(--cream);
+        padding: 1rem 1.25rem;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.9rem;
+        font-weight: 300;
+        border-radius: 2px;
+        outline: none;
+        transition: border-color 0.2s, background 0.2s;
+        width: 100%;
+      }
+
+      .form-input::placeholder,
+      .form-textarea::placeholder {
+        color: rgba(245, 239, 230, 0.2);
+      }
+
+      .form-input:focus,
+      .form-select:focus,
+      .form-textarea:focus {
+        border-color: var(--rose);
+        background: rgba(232, 50, 90, 0.05);
+      }
+
+      .form-select option {
+        background: #1a1a1a;
+        color: var(--cream);
+      }
+
+      .form-textarea {
+        resize: none;
+      }
+
+      .form-submit {
+        background: var(--rose);
+        color: #fff;
+        border: none;
+        padding: 1.1rem 2rem;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        cursor: pointer;
+        border-radius: 2px;
+        transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+      }
+
+      .form-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(232, 50, 90, 0.4);
+      }
+
+      /* FOOTER */
+      footer {
+        background: #050505;
+        color: rgba(245, 239, 230, 0.4);
+        padding: 3rem 4rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid rgba(245, 239, 230, 0.05);
+      }
+
+      .footer-logo {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.8rem;
+        letter-spacing: 0.05em;
+        color: var(--cream);
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .footer-links a {
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(245, 239, 230, 0.4);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .footer-links a:hover {
+        color: var(--rose);
+      }
+
+      footer .copy {
+        font-size: 0.7rem;
+      }
+
+      /* WA FLOAT */
+      .wa-float {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        background: #25D366;
+        color: #fff;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+        z-index: 200;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .wa-float:hover {
+        transform: scale(1.1);
+        box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+      }
+
+      .wa-float svg {
+        width: 28px;
+        height: 28px;
+        fill: currentColor;
+      }
+
+      /* SCROLL REVEAL */
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .reveal-left {
+        opacity: 0;
+        transform: translateX(-40px);
+        transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .reveal-left.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .reveal-scale {
+        opacity: 0;
+        transform: scale(0.9);
+        transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .reveal-scale.visible {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      /* WORD-BY-WORD ANIMATION */
+      .anim-title .word {
+        display: inline-block;
+        overflow: hidden;
+        margin-right: 0.12em;
+        vertical-align: bottom;
+      }
+
+      .anim-title .word .inner {
+        display: inline-block;
+        transform: translateY(110%);
+        transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .anim-title.visible .word .inner {
+        transform: translateY(0);
+      }
+
+      .anim-title .word:nth-child(1) .inner {
+        transition-delay: 0s;
+      }
+
+      .anim-title .word:nth-child(2) .inner {
+        transition-delay: 0.08s;
+      }
+
+      .anim-title .word:nth-child(3) .inner {
+        transition-delay: 0.16s;
+      }
+
+      .anim-title .word:nth-child(4) .inner {
+        transition-delay: 0.24s;
+      }
+
+      .anim-title .word:nth-child(5) .inner {
+        transition-delay: 0.32s;
+      }
+
+      /* SECTION HEADING BAND */
+      .section-band {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        background: var(--rose);
+        color: #fff;
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 0.82rem;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        padding: 0.4rem 1.6rem 0.4rem 1.2rem;
+        margin-bottom: 1.5rem;
+        clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%);
+      }
+
+      .section-band.gold {
+        background: var(--gold);
+        color: var(--ink);
+      }
+
+      .section-band.outline {
+        background: transparent;
+        color: var(--rose);
+        border: 1.5px solid var(--rose);
+        clip-path: none;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.6rem;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+      }
+
+      /* STAGGER CHILDREN */
+      .stagger>* {
+        opacity: 0;
+        transform: translateY(25px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+
+      .stagger.visible>*:nth-child(1) {
+        opacity: 1;
+        transform: none;
+        transition-delay: 0s;
+      }
+
+      .stagger.visible>*:nth-child(2) {
+        opacity: 1;
+        transform: none;
+        transition-delay: 0.1s;
+      }
+
+      .stagger.visible>*:nth-child(3) {
+        opacity: 1;
+        transform: none;
+        transition-delay: 0.2s;
+      }
+
+      .stagger.visible>*:nth-child(4) {
+        opacity: 1;
+        transform: none;
+        transition-delay: 0.3s;
+      }
+
+      /* UNDERLINE DRAW ANIM */
+      .underline-draw {
+        position: relative;
+        display: inline;
+      }
+
+      .underline-draw::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--gold);
+        transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+      }
+
+      .anim-title.visible .underline-draw::after {
+        width: 100%;
+      }
+
+      /* PULSE RING for WA button */
+      @keyframes pulseRing {
+        0% {
+          transform: scale(1);
+          opacity: 0.6;
+        }
+
+        100% {
+          transform: scale(1.8);
+          opacity: 0;
+        }
+      }
+
+      .wa-pulse {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background: #25D366;
+        animation: pulseRing 2s ease-out infinite;
+        z-index: -1;
+      }
+
+      .wa-float {
+        position: relative;
+        overflow: visible !important;
+      }
+
+      @media (max-width: 900px) {
+        #hero {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-right {
+          display: none;
+        }
+
+        nav {
+          padding: 0 1.5rem;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        #about {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+
+        .about-right {
+          display: none;
+        }
+
+        #classes {
+          padding: 5rem 1.5rem;
+        }
+
+        .classes-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        #testimonials,
+        #faq,
+        #contact {
+          padding: 5rem 1.5rem;
+        }
+
+        .testimonials-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .faq-layout,
+        .contact-grid {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+
+        .hero-left {
+          padding: 3rem 1.5rem;
+        }
+
+        footer {
+          flex-direction: column;
+          gap: 1.5rem;
+          text-align: center;
+          padding: 2rem 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+    <!-- TOP MARQUEE -->
+    <div class="marquee-wrapper" style="position:fixed;top:0;left:0;right:0;z-index:200;">
+      <div class="marquee-track" id="mtrack">
+        <span>Piano</span>
+        <span class="dot">✦</span>
+        <span>Keyboard</span>
+        <span class="dot">✦</span>
+        <span>Guitar</span>
+        <span class="dot">✦</span>
+        <span>Vocals</span>
+        <span class="dot">✦</span>
+        <span>Ahmedabad</span>
+        <span class="dot">✦</span>
+        <span>Online Classes</span>
+        <span class="dot">✦</span>
+        <span>Piano</span>
+        <span class="dot">✦</span>
+        <span>Keyboard</span>
+        <span class="dot">✦</span>
+        <span>Guitar</span>
+        <span class="dot">✦</span>
+        <span>Vocals</span>
+        <span class="dot">✦</span>
+        <span>Ahmedabad</span>
+        <span class="dot">✦</span>
+        <span>Online Classes</span>
+        <span class="dot">✦</span>
+        <span>Piano</span>
+        <span class="dot">✦</span>
+        <span>Keyboard</span>
+        <span class="dot">✦</span>
+        <span>Guitar</span>
+        <span class="dot">✦</span>
+        <span>Vocals</span>
+        <span class="dot">✦</span>
+        <span>Ahmedabad</span>
+        <span class="dot">✦</span>
+        <span>Online Classes</span>
+        <span class="dot">✦</span>
+      </div>
+    </div>
+    <!-- NAV -->
+    <nav style="top: 32px;">
+      <div class="nav-logo">
+        <span class="big">Darshini's</span>
+        <span class="small">World of Music</span>
+      </div>
+      <div class="nav-links">
+        <a href="#hero">Home</a>
+        <a href="#about">About</a>
+        <a href="#classes">Classes</a>
+        <a href="#testimonials">Stories</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+        <a href="https://wa.me/919876543210" class="nav-cta">Book Trial</a>
+      </div>
+      <a href="https://wa.me/919876543210" class="nav-cta" style="display:block;">Book Trial</a>
+    </nav>
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-left">
+        <span class="float-note" style="top:10%;left:5%;">♩</span>
+        <div class="section-band outline reveal">Ahmedabad's Beloved Music Studio</div>
+        <h1 class="hero-h1 anim-title reveal" style="transition-delay:0.1s">
+          <span class="word">
+            <span class="inner">Music</span>
+          </span>
+          <span class="italic-serif anim-title reveal" style="transition-delay:0.2s">
+            <span class="word">
+              <span class="inner">that</span>
+            </span>
+            <span class="word">
+              <span class="inner">moves</span>
+            </span>
+            <span class="word">
+              <span class="inner">you.</span>
+            </span>
+          </span>
+        </h1>
+        <p class="hero-desc reveal" style="transition-delay:0.2s"> Personalized coaching by <strong>Darshini Doshi</strong> — for kids, teens & adults who are ready to actually play. Piano, Keyboard, Guitar & Vocals. Online or In-person. </p>
+        <div class="hero-btns reveal" style="transition-delay:0.3s">
+          <a href="#contact" class="btn-primary">Book a Trial Class</a>
+          <a href="https://wa.me/919876543210" class="btn-ghost">WhatsApp Us ↗</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-right-bg"></div>
+        <div class="hero-img-overlay"></div>
+        <div class="hero-badge">
+          <span class="num">10+</span>
+          <span class="label">Years of Excellence</span>
+        </div>
+      </div>
+    </section>
+    <!-- CLASSES -->
+    <section id="classes">
+      <div class="classes-header reveal">
+        <div class="section-band">What We Teach</div>
+        <h2 class="section-title anim-title">
+          <span class="word">
+            <span class="inner">Four</span>
+          </span>
+          <span class="word">
+            <span class="inner">Paths.</span>
+          </span>
+          <br>
+          <span class="word">
+            <span class="inner">Infinite</span>
+          </span>
+          <span class="word">
+            <span class="inner">Music.</span>
+          </span>
+        </h2>
+      </div>
+      <div class="classes-grid reveal" style="transition-delay:0.15s">
+        <div class="class-card">
+          <span class="class-icon">🎹</span>
+          <h3 class="class-name">Piano</h3>
+          <p class="class-desc">Classical to contemporary styles with focus on technique and expression. Build finger strength and musical intuition.</p>
+          <span class="class-arrow">→</span>
+        </div>
+        <div class="class-card">
+          <span class="class-icon">🎹</span>
+          <h3 class="class-name">Keyboard</h3>
+          <p class="class-desc">Mastering digital sounds, chords, and modern music production basics. Perfect for home learners and aspiring producers.</p>
+          <span class="class-arrow">→</span>
+        </div>
+        <div class="class-card">
+          <span class="class-icon">🎸</span>
+          <h3 class="class-name">Guitar</h3>
+          <p class="class-desc">Acoustic and electric training from basic strumming to lead solos. Campfire songs to concert-stage riffs.</p>
+          <span class="class-arrow">→</span>
+        </div>
+        <div class="class-card">
+          <span class="class-icon">🎙️</span>
+          <h3 class="class-name">Vocals</h3>
+          <p class="class-desc">Voice culture, breathing techniques, and performance-ready coaching. Find your voice — and own it.</p>
+          <span class="class-arrow">→</span>
+        </div>
+      </div>
+    </section>
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="about-left reveal-left">
+        <div class="section-band gold">Why Darshini?</div>
+        <h2 class="section-title anim-title" style="color: var(--cream)">
+          <span class="word">
+            <span class="inner">Not</span>
+          </span>
+          <span class="word">
+            <span class="inner">just</span>
+          </span>
+          <br>
+          <span class="word">
+            <span class="inner">lessons</span>
+          </span>
+          <span class="word">
+            <span class="inner">—</span>
+          </span>
+          <br>
+          <span class="word">
+            <span class="inner">a</span>
+          </span>
+          <span class="word">
+            <span class="inner">
+              <span class="underline-draw">journey.</span>
+            </span>
+          </span>
+        </h2>
+        <p>From age 6 to 60, every student gets a curriculum tailored to their pace and passion. No one gets left behind. No one gets bored.</p>
+        <div class="perks">
+          <div class="perk">
+            <span class="perk-num">01</span>
+            <div>
+              <div class="perk-title">Expert Pedagogy</div>
+              <p class="perk-desc">A curriculum shaped around you — not a textbook template. Theory meets creativity from day one.</p>
+            </div>
+          </div>
+          <div class="perk">
+            <span class="perk-num">02</span>
+            <div>
+              <div class="perk-title">Flexible Learning</div>
+              <p class="perk-desc">Studio sessions in Ahmedabad or online lessons from your couch. Your schedule, your space.</p>
+            </div>
+          </div>
+          <div class="perk">
+            <span class="perk-num">03</span>
+            <div>
+              <div class="perk-title">Stage-Ready Confidence</div>
+              <p class="perk-desc">We don't just teach notes — we build performers. Trinity & Royal Schools certifications available.</p>
+            </div>
+          </div>
+          <div class="perk">
+            <span class="perk-num">04</span>
+            <div>
+              <div class="perk-title">Theory + Practice</div>
+              <p class="perk-desc">Deep-dive into music theory alongside real instrument mastery. Understand what you play.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="about-right reveal" style="padding: 2rem;">
+        <div class="about-decor"></div>
+        <div class="about-img-frame">
+          <div class="placeholder">
+            <span style="text-align:center; padding: 2rem; font-size: 0.9rem; line-height:1.8">Darshini Doshi <br>
+              <span style="opacity:0.5; font-size:0.75rem; font-style:normal; font-family: 'DM Sans', sans-serif; letter-spacing: 0.1em;">INSTRUCTOR PHOTO</span>
+            </span>
+          </div>
+        </div>
+        <div class="about-badge">
+          <span class="num">10+</span>
+          <span class="label">Years</span>
+        </div>
+      </div>
+    </section>
+    <!-- TESTIMONIALS -->
+    <section id="testimonials">
+      <div class="testimonials-header">
+        <div>
+          <div class="section-band reveal">Testimonials</div>
+          <h2 class="section-title anim-title reveal" style="transition-delay:0.1s">
+            <span class="word">
+              <span class="inner">They</span>
+            </span>
+            <span class="word">
+              <span class="inner">Said</span>
+            </span>
+            <span class="word">
+              <span class="inner">It.</span>
+            </span>
+            <br>
+            <span class="word">
+              <span class="inner">We</span>
+            </span>
+            <span class="word">
+              <span class="inner">Delivered.</span>
+            </span>
+          </h2>
+        </div>
+        <a href="#contact" class="btn-primary" style="flex-shrink:0; align-self: flex-end; margin-bottom: 0.5rem;">Join Them →</a>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal">
+          <span class="quote-mark">"</span>
+          <p class="testimonial-text">Darshini Ma'am is incredibly patient. My 8-year-old son has progressed from nursery rhymes to complex piano pieces in just one year!</p>
+          <div class="testimonial-author">
+            <span class="author-dot">S</span>
+            <div>
+              <div class="author-name">Mrs. Shah</div>
+              <div class="author-role">Parent of Student</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal" style="transition-delay:0.1s">
+          <span class="quote-mark">"</span>
+          <p class="testimonial-text">The online sessions are so well-organized. I never felt I was missing out by not being in the studio. Her guitar tips are genuinely gold.</p>
+          <div class="testimonial-author">
+            <span class="author-dot">R</span>
+            <div>
+              <div class="author-name">Rahul M.</div>
+              <div class="author-role">Guitar Student</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal" style="transition-delay:0.2s">
+          <span class="quote-mark">"</span>
+          <p class="testimonial-text">I started learning vocals at age 45. Darshini made me feel so comfortable and capable. It's become the highlight of my entire week!</p>
+          <div class="testimonial-author">
+            <span class="author-dot">S</span>
+            <div>
+              <div class="author-name">Sunitra G.</div>
+              <div class="author-role">Vocals Student</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="section-band reveal">FAQ</div>
+      <h2 class="section-title anim-title reveal" style="transition-delay:0.1s">
+        <span class="word">
+          <span class="inner">We've</span>
+        </span>
+        <span class="word">
+          <span class="inner">Heard</span>
+        </span>
+        <br>
+        <span class="word">
+          <span class="inner">Them</span>
+        </span>
+        <span class="word">
+          <span class="inner">All.</span>
+        </span>
+      </h2>
+      <div class="faq-layout">
+        <div class="faq-side-text reveal-left" style="transition-delay:0.1s"> Still on the fence? Totally fair. Here are the questions we get asked <strong>every single week</strong> — answered honestly. <br>
+          <br>
+          <a href="#contact" class="btn-primary" style="font-size:0.7rem; display:inline-block; margin-top:1rem;">Still have a question?</a>
+        </div>
+        <div class="faq-list reveal" style="transition-delay:0.15s">
+          <details class="faq-item" open>
+            <summary class="faq-summary"> What is the minimum age to start? <span class="faq-toggle">+</span>
+            </summary>
+            <p class="faq-body">We typically start from age 6 for instruments like Piano and Keyboard. For younger kids, we assess their interest and readiness in a relaxed introductory session.</p>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-summary"> Do you provide certificates? <span class="faq-toggle">+</span>
+            </summary>
+            <p class="faq-body">Yes! We prepare students for Trinity or Royal Schools of Music certifications upon request. Many of our students have passed with distinction.</p>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-summary"> How many classes per week? <span class="faq-toggle">+</span>
+            </summary>
+            <p class="faq-body">Standard plans include 1 or 2 sessions per week. Each session lasts approximately 45–60 minutes, depending on the student's level.</p>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-summary"> Can I do online classes? <span class="faq-toggle">+</span>
+            </summary>
+            <p class="faq-body">Absolutely. Our online students learn just as effectively as in-studio students. All you need is a decent internet connection and your instrument.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-band gold reveal">Contact Us</div>
+      <h2 class="section-title anim-title reveal" style="transition-delay:0.1s; color: var(--cream)">
+        <span class="word">
+          <span class="inner">Your</span>
+        </span>
+        <span class="word">
+          <span class="inner">First</span>
+        </span>
+        <span class="word">
+          <span class="inner">Note</span>
+        </span>
+        <br>
+        <span class="word">
+          <span class="inner">Starts</span>
+        </span>
+        <span class="word">
+          <span class="inner">Here.</span>
+        </span>
+      </h2>
+      <div class="contact-grid">
+        <div class="contact-info reveal-left" style="transition-delay:0.1s">
+          <p>Located in the heart of Ahmedabad. Come visit us in-studio or join our global online community. Either way, the music is the same.</p>
+          <div class="contact-details">
+            <div class="contact-detail">
+              <span class="contact-detail-icon">📍</span>
+              <div>
+                <div class="contact-detail-label">Studio Address</div>
+                <div class="contact-detail-val">Ahmedabad, Gujarat, India <br>
+                  <span style="opacity:0.5; font-size:0.8rem;">(Contact us for the full address)</span>
+                </div>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <span class="contact-detail-icon">📧</span>
+              <div>
+                <div class="contact-detail-label">Email</div>
+                <div class="contact-detail-val">
+                  <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="23474251504b4a4d4a4e56504a4063465b424e534f460d404c4e">[email&#160;protected]</a>
+                </div>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <span class="contact-detail-icon">💬</span>
+              <div>
+                <div class="contact-detail-label">WhatsApp</div>
+                <div class="contact-detail-val">
+                  <a href="https://wa.me/919876543210" style="color: inherit;">+91 98765 43210</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: 3rem; padding: 2rem; background: rgba(245,239,230,0.04); border: 1px solid rgba(245,239,230,0.08); border-radius: 2px;">
+            <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-style: italic; font-weight: 300; color: rgba(245,239,230,0.7); line-height: 1.6;">"Music gives a soul to the universe, wings to the mind, flight to the imagination, and life to everything."</div>
+            <div style="margin-top: 1rem; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase;">— Plato</div>
+          </div>
+        </div>
+        <div class="reveal" style="transition-delay:0.15s">
+          <form class="contact-form" id="contactForm">
+            <div class="form-group">
+              <label class="form-label">Full Name</label>
+              <input type="text" name="name" class="form-input" placeholder="e.g. Rahul Sharma" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Phone / WhatsApp</label>
+              <input type="tel" name="phone" class="form-input" placeholder="e.g. +91 98765 43210">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Instrument of Interest</label>
+              <select name="instrument" class="form-select">
+                <option>Piano</option>
+                <option>Keyboard</option>
+                <option>Guitar</option>
+                <option>Vocals</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Message</label>
+              <textarea name="message" class="form-textarea" rows="4" placeholder="Tell us about your musical goals..."></textarea>
+            </div>
+            <button type="submit" class="form-submit" id="formBtn">Send Inquiry →</button>
+            <div id="formMsg" style="display:none; margin-top:1rem; font-size:0.85rem; font-weight:500; text-align:center;"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+    <!-- FOOTER -->
+    <footer>
+      <span class="footer-logo">Darshini's</span>
+      <div class="footer-links">
+        <a href="https://instagram.com/darshinis_worldofmusic">Instagram</a>
+        <a href="#">Facebook</a>
+        <a href="#">YouTube</a>
+      </div>
+      <span class="copy">© 2026 Darshini Doshi. Ahmedabad, India.</span>
+    </footer>
+    <!-- WA FLOAT -->
+    <a href="https://wa.me/919876543210" class="wa-float" title="Chat on WhatsApp" aria-label="WhatsApp">
+      <span class="wa-pulse"></span>
+      <!-- Official WhatsApp logo icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 175.216 175.552" style="width:30px;height:30px;">
+        <defs>
+          <linearGradient id="wag" x1="85.915" x2="86.535" y1="32.567" y2="137.092" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#57d163" />
+            <stop offset="1" stop-color="#23b33a" />
+          </linearGradient>
+        </defs>
+        <path fill="#fff" d="M87.184 25.227c-33.733 0-61.166 27.423-61.178 61.13a60.98 60.98 0 0 0 9.349 32.535L26 154.444l36.892-9.689a61.26 61.26 0 0 0 29.807 7.636h.042c33.714 0 61.144-27.429 61.154-61.137a60.75 60.75 0 0 0-17.9-43.251 60.75 60.75 0 0 0-43.211-17.776z" />
+        <path fill="url(#wag)" d="M87.184 32.526c-29.808 0-54.077 24.253-54.086 54.023a53.89 53.89 0 0 0 8.566 29.127l.673 1.069-2.861 10.446 10.724-2.815 1.032.612a53.98 53.98 0 0 0 27.597 7.559h.038c29.781 0 54.065-24.259 54.072-54.031a53.6 53.6 0 0 0-15.783-38.146 53.6 53.6 0 0 0-29.972-17.844z" />
+        <path fill="#fff" fill-rule="evenodd" d="M68.772 55.603c-1.378-3.061-2.828-3.123-4.137-3.176l-3.524-.043c-1.226 0-3.218.46-4.902 2.3s-6.435 6.287-6.435 15.332 6.588 17.785 7.506 19.013 12.718 20.381 31.405 27.75c15.529 6.124 18.689 4.906 22.061 4.6s10.877-4.448 12.408-8.74 1.532-7.971 1.073-8.74-1.685-1.226-3.525-2.146-10.877-5.367-12.562-5.981-2.91-.919-4.137.921-4.746 5.979-5.819 7.206-2.144 1.381-3.984.462-7.76-2.861-14.784-9.124c-5.465-4.873-9.154-10.891-10.228-12.73s-.114-2.835.808-3.751c.825-.824 1.838-2.147 2.759-3.22s1.224-1.84 1.836-3.065.307-2.301-.153-3.22-4.032-10.011-5.669-13.645z" />
+      </svg>
+    </a>
+    <script>
+      // Custom cursor
+      const cursor = document.getElementById('cursor');
+      const ring = document.getElementById('cursorRing');
+      let mx = 0,
+        my = 0,
+        rx = 0,
+        ry = 0;
+      document.addEventListener('mousemove', e => {
+        mx = e.clientX;
+        my = e.clientY;
+        cursor.style.left = mx + 'px';
+        cursor.style.top = my + 'px';
+      });
+
+      function animRing() {
+        rx += (mx - rx) * 0.12;
+        ry += (my - ry) * 0.12;
+        ring.style.left = rx + 'px';
+        ring.style.top = ry + 'px';
+        requestAnimationFrame(animRing);
+      }
+      animRing();
+      document.querySelectorAll('a, button, summary').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursor.style.transform = 'translate(-50%,-50%) scale(2)';
+          ring.style.transform = 'translate(-50%,-50%) scale(1.5)';
+          ring.style.opacity = '0.2';
+        });
+        el.addEventListener('mouseleave', () => {
+          cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+          ring.style.transform = 'translate(-50%,-50%) scale(1)';
+          ring.style.opacity = '0.5';
+        });
+      });
+      // Scroll reveal — all types
+      const allReveal = document.querySelectorAll('.reveal, .reveal-left, .reveal-scale, .anim-title, .stagger');
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.12
+      });
+      allReveal.forEach(el => obs.observe(el));
+      // Duplicate marquee for seamless loop
+      const mtrack = document.getElementById('mtrack');
+      mtrack.innerHTML += mtrack.innerHTML;
+      // FORM SUBMIT → Google Apps Script
+      const form = document.getElementById('contactForm');
+      const formBtn = document.getElementById('formBtn');
+      const formMsg = document.getElementById('formMsg');
+      const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwdo03Kp7nog961WdtUoF8-FRBwBlILddlZMRIAv7fQp0tk2vLc4K1O673uCOgvTEn2/exec';
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        formBtn.disabled = true;
+        formBtn.textContent = 'Sending...';
+        formMsg.style.display = 'none';
+        const data = new FormData(form);
+        const params = new URLSearchParams();
+        data.forEach((val, key) => params.append(key, val));
+        try {
+          await fetch(SCRIPT_URL, {
+            method: 'POST',
+            body: params,
+            mode: 'no-cors'
+          });
+          formBtn.disabled = false;
+          formBtn.textContent = '✓ Message Sent!';
+          formBtn.style.background = '#25D366';
+          formMsg.style.display = 'block';
+          formMsg.style.color = 'rgba(245,239,230,0.7)';
+          formMsg.textContent = "We'll be in touch soon — usually within 24 hours.";
+          form.reset();
+        } catch (err) {
+          formBtn.disabled = false;
+          formBtn.textContent = 'Send Inquiry →';
+          formMsg.style.display = 'block';
+          formMsg.style.color = '#E8325A';
+          formMsg.textContent = 'Something went wrong. Please try WhatsApp instead.';
+        }
+      });
+    </script>
+  </body>
+</html>
