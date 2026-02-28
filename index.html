@@ -1,437 +1,354 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DigiGenie | Digital Growth Agency</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiGenie | Digital Growth Agency</title>
 
-  <style>
-    :root {
-      --red: #FF3B30;
-      --blue: #007AFF;
-      --green: #34C759;
-      --yellow: #FFCC00;
-      --dark: #080810;
-      --dark2: #0f0f1a;
-      --card: #111120;
-      --border: rgba(255,255,255,0.07);
-      --text-muted: rgba(255,255,255,0.4);
-    }
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--dark);
-      color: #fff;
-      font-family: 'Space Grotesk', sans-serif;
-      overflow-x: hidden;
-      cursor: none;
-    }
+    <style>
+        :root {
+            --red: #FF3B30;
+            --blue: #007AFF;
+            --green: #34C759;
+            --yellow: #FFCC00;
+            --dark: #080810;
+            --dark2: #0f0f1a;
+            --card: #111120;
+            --border: rgba(255,255,255,0.07);
+            --text-muted: rgba(255,255,255,0.4);
+        }
 
-    .cursor {
-      width: 14px; height: 14px;
-      background: var(--blue);
-      border-radius: 50%;
-      position: fixed; z-index: 9999;
-      pointer-events: none;
-      mix-blend-mode: screen;
-      box-shadow: 0 0 16px var(--blue), 0 0 32px rgba(0,122,255,0.5);
-      transition: width 0.2s, height 0.2s, background 0.2s;
-    }
-    .cursor.hovering {
-      width: 20px; height: 20px;
-      background: var(--red);
-      box-shadow: 0 0 24px var(--red), 0 0 48px rgba(255,59,48,0.5);
-    }
-    .cursor-ring {
-      width: 44px; height: 44px;
-      border: 2px solid rgba(0,122,255,0.7);
-      border-radius: 50%;
-      position: fixed; z-index: 9998;
-      pointer-events: none;
-      transition: width 0.35s cubic-bezier(0.23,1,0.32,1),
-                  height 0.35s cubic-bezier(0.23,1,0.32,1),
-                  border-color 0.35s;
-    }
-    .cursor-ring.hovering {
-      width: 70px; height: 70px;
-      border-color: rgba(255,59,48,0.8);
-      border-width: 2px;
-    }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--dark);
+            color: #fff;
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+            cursor: none;
+        }
 
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: var(--dark); }
-    ::-webkit-scrollbar-thumb {
-      background: linear-gradient(var(--blue), var(--red));
-      border-radius: 3px;
-    }
-    ::selection { background: var(--blue); color: #fff; }
+        .cursor {
+            width: 14px; height: 14px;
+            background: var(--blue);
+            border-radius: 50%;
+            position: fixed; z-index: 9999;
+            pointer-events: none;
+            mix-blend-mode: screen;
+            box-shadow: 0 0 16px var(--blue), 0 0 32px rgba(0,122,255,0.5);
+            transition: width 0.2s, height 0.2s, background 0.2s;
+        }
+        .cursor.hovering {
+            width: 20px; height: 20px;
+            background: var(--red);
+            box-shadow: 0 0 24px var(--red), 0 0 48px rgba(255,59,48,0.5);
+        }
+        .cursor-ring {
+            width: 44px; height: 44px;
+            border: 2px solid rgba(0,122,255,0.7);
+            border-radius: 50%;
+            position: fixed; z-index: 9998;
+            pointer-events: none;
+            transition: width 0.35s cubic-bezier(0.23,1,0.32,1),
+                        height 0.35s cubic-bezier(0.23,1,0.32,1),
+                        border-color 0.35s;
+        }
+        .cursor-ring.hovering {
+            width: 70px; height: 70px;
+            border-color: rgba(255,59,48,0.8);
+            border-width: 2px;
+        }
 
-    nav {
-      position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
-      padding: 20px 0;
-      transition: all 0.5s ease;
-    }
-    nav.scrolled {
-      background: rgba(8,8,16,0.92);
-      backdrop-filter: blur(24px);
-      border-bottom: 1px solid rgba(0,122,255,0.2);
-      padding: 14px 0;
-      box-shadow: 0 4px 40px rgba(0,122,255,0.08);
-    }
-    .nav-inner {
-      max-width: 1280px; margin: 0 auto;
-      padding: 0 40px;
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; cursor: none; }
+        nav {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+            padding: 20px 0;
+            transition: all 0.5s ease;
+        }
+        nav.scrolled {
+            background: rgba(8,8,16,0.92);
+            backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(0,122,255,0.2);
+            padding: 14px 0;
+            box-shadow: 0 4px 40px rgba(0,122,255,0.08);
+        }
+        .nav-inner {
+            max-width: 1280px; margin: 0 auto;
+            padding: 0 40px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; cursor: none; }
+        .logo-bars { display: flex; gap: 4px; align-items: flex-end; }
+        .logo-bars span { width: 5px; border-radius: 3px; display: block; animation: barPulse 1.2s ease-in-out infinite; }
+        .logo-bars span:nth-child(1) { height: 18px; background: var(--red);   animation-delay: 0s;   }
+        .logo-bars span:nth-child(2) { height: 26px; background: var(--blue);  animation-delay: 0.15s; }
+        .logo-bars span:nth-child(3) { height: 14px; background: var(--green); animation-delay: 0.3s; }
+        @keyframes barPulse { 0%,100% { transform: scaleY(1); } 50% { transform: scaleY(0.3); } }
 
-    .logo-bars { display: flex; gap: 4px; align-items: flex-end; }
-    .logo-bars span {
-      width: 5px; border-radius: 3px; display: block;
-      animation: barPulse 1.2s ease-in-out infinite;
-    }
-    .logo-bars span:nth-child(1) { height: 18px; background: var(--red);   animation-delay: 0s;   }
-    .logo-bars span:nth-child(2) { height: 26px; background: var(--blue);  animation-delay: 0.15s; }
-    .logo-bars span:nth-child(3) { height: 14px; background: var(--green); animation-delay: 0.3s; }
-    @keyframes barPulse {
-      0%,100% { transform: scaleY(1);   filter: brightness(1); }
-      50%      { transform: scaleY(0.3); filter: brightness(2) drop-shadow(0 0 6px currentColor); }
-    }
+        .logo-text {
+            font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 3px;
+            background: linear-gradient(135deg, #fff, rgba(255,255,255,0.6));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .logo-text .accent {
+            background: linear-gradient(135deg, var(--red), var(--blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+        .nav-links a {
+            text-decoration: none; font-size: 11px; font-weight: 600;
+            letter-spacing: 2px; text-transform: uppercase;
+            color: var(--text-muted); transition: color 0.3s; cursor: none;
+        }
+        .nav-cta {
+            background: linear-gradient(135deg, var(--blue), #0055cc);
+            color: #fff !important; padding: 10px 22px; border-radius: 100px;
+            box-shadow: 0 0 20px rgba(0,122,255,0.4);
+        }
 
-    .logo-text {
-      font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 3px;
-      background: linear-gradient(135deg, #fff, rgba(255,255,255,0.6));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
-    .logo-text .accent {
-      background: linear-gradient(135deg, var(--red), var(--blue));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
-    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
-    .nav-links a {
-      text-decoration: none; font-size: 11px; font-weight: 600;
-      letter-spacing: 2px; text-transform: uppercase;
-      color: var(--text-muted); transition: color 0.3s; cursor: none;
-      position: relative;
-    }
-    .nav-links a::after {
-      content: ''; position: absolute; bottom: -4px; left: 0;
-      width: 0; height: 2px; background: var(--blue);
-      transition: width 0.3s ease; border-radius: 2px;
-    }
-    .nav-links a:hover { color: #fff; }
-    .nav-links a:hover::after { width: 100%; }
-    .nav-cta {
-      background: linear-gradient(135deg, var(--blue), #0055cc);
-      color: #fff !important; padding: 10px 22px; border-radius: 100px;
-      transition: all 0.3s !important;
-      box-shadow: 0 0 20px rgba(0,122,255,0.4);
-      animation: navCtaPulse 3s ease-in-out infinite;
-    }
-    .nav-cta::after { display: none !important; }
-    @keyframes navCtaPulse {
-      0%,100% { box-shadow: 0 0 20px rgba(0,122,255,0.4); }
-      50%      { box-shadow: 0 0 40px rgba(0,122,255,0.8), 0 0 60px rgba(0,122,255,0.3); }
-    }
-    .nav-cta:hover {
-      box-shadow: 0 0 50px rgba(0,122,255,0.9) !important;
-      transform: translateY(-2px) scale(1.03);
-    }
+        section { padding: 100px 0; }
+        .section-inner { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+        .section-tag {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-family: 'DM Mono', monospace; font-size: 10px; color: var(--blue);
+            letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px;
+        }
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(48px, 7vw, 90px);
+            line-height: 0.95; letter-spacing: 2px; margin-bottom: 16px;
+        }
 
-    section { padding: 100px 0; }
-    .section-inner { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
-    .section-tag {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-family: 'DM Mono', monospace; font-size: 10px; color: var(--blue);
-      letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px;
-    }
-    .section-tag::before { content: '//'; color: var(--text-muted); }
-    .section-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(48px, 7vw, 90px);
-      line-height: 0.95; letter-spacing: 2px; margin-bottom: 16px;
-    }
-    .section-title .colored { color: var(--blue); }
-    .section-sub { font-size: 15px; color: var(--text-muted); font-weight: 300; max-width: 500px; }
+        /* CONTACT */
+        #contact { background: var(--dark); }
+        .contact-wrap {
+            display: grid; grid-template-columns: 1fr 1.7fr;
+            gap: 2px; background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border); border-radius: 28px;
+            overflow: hidden; margin-top: 60px;
+        }
+        .contact-left {
+            background: var(--card); padding: 60px 48px;
+        }
+        .contact-left-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 46px; letter-spacing: 3px;
+            margin-bottom: 40px; line-height: 1;
+        }
+        .contact-info-item { margin-bottom: 28px; }
+        .contact-info-label {
+            font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px;
+        }
+        .contact-info-value { font-size: 15px; font-weight: 600; }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(70px) scale(0.96);
-      transition: opacity 0.9s cubic-bezier(0.23,1,0.32,1),
-                  transform 0.9s cubic-bezier(0.23,1,0.32,1);
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
+        .contact-right { background: var(--dark2); padding: 60px 56px; }
+        .contact-form-title {
+            font-family: 'Bebas Neue', sans-serif; font-size: 50px; letter-spacing: 2px;
+            line-height: 1; margin-bottom: 36px;
+        }
+        .contact-form-title span { color: var(--blue); }
 
-    #contact { background: var(--dark); }
-    .contact-wrap {
-      display: grid; grid-template-columns: 1fr 1.7fr;
-      gap: 2px; background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border); border-radius: 28px;
-      overflow: hidden; margin-top: 60px;
-    }
-    .contact-left {
-      background: var(--card); padding: 60px 48px;
-      position: relative; overflow: hidden;
-    }
-    .contact-left-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 46px; letter-spacing: 3px;
-      margin-bottom: 40px; line-height: 1;
-    }
-    .contact-info-item { margin-bottom: 28px; }
-    .contact-info-label {
-      font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px;
-      text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px;
-    }
-    .contact-info-value { font-size: 15px; font-weight: 600; }
-    .contact-right { background: var(--dark2); padding: 60px 56px; }
-    .contact-form-title {
-      font-family: 'Bebas Neue', sans-serif; font-size: 50px; letter-spacing: 2px;
-      line-height: 1; margin-bottom: 36px;
-    }
-    .contact-form-title span { color: var(--blue); }
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .form-group { display: flex; flex-direction: column; gap: 6px; }
-    .form-group.full { grid-column: 1/-1; }
-    .form-label {
-      font-size: 10px; font-weight: 700; letter-spacing: 2px;
-      text-transform: uppercase; color: var(--text-muted);
-    }
-    .form-input {
-      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
-      border-radius: 13px; padding: 15px 20px; color: #fff;
-      font-family: 'Space Grotesk', sans-serif; font-size: 14px;
-      outline: none; transition: all 0.4s; width: 100%;
-    }
-    .form-input:focus {
-      border-color: var(--blue);
-      background: rgba(0,122,255,0.07);
-      box-shadow: 0 0 0 4px rgba(0,122,255,0.15), 0 0 20px rgba(0,122,255,0.15);
-      transform: translateY(-1px);
-    }
-    .form-input::placeholder { color: rgba(255,255,255,0.18); }
-    select.form-input option { background: var(--card); }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .form-group { display: flex; flex-direction: column; gap: 6px; }
+        .form-group.full { grid-column: 1/-1; }
+        .form-label {
+            font-size: 10px; font-weight: 700; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--text-muted);
+        }
+        .form-input {
+            background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+            border-radius: 13px; padding: 15px 20px; color: #fff;
+            font-family: 'Space Grotesk', sans-serif; font-size: 14px;
+            outline: none; transition: all 0.4s; width: 100%;
+        }
+        select.form-input option { background: var(--card); }
+        .btn-submit {
+            width: 100%; padding: 18px;
+            background: linear-gradient(135deg, var(--blue), #0044bb);
+            border: none; border-radius: 13px; color: #fff;
+            font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700;
+            letter-spacing: 3px; text-transform: uppercase; cursor: none;
+            transition: all 0.35s; margin-top: 8px;
+            box-shadow: 0 8px 32px rgba(0,122,255,0.4);
+        }
+        .btn-submit:disabled { opacity: 0.7; cursor: not-allowed; }
 
-    .btn-submit {
-      width: 100%; padding: 18px;
-      background: linear-gradient(135deg, var(--blue), #0044bb);
-      border: none; border-radius: 13px; color: #fff;
-      font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700;
-      letter-spacing: 3px; text-transform: uppercase; cursor: none;
-      transition: all 0.35s; margin-top: 8px;
-      box-shadow: 0 8px 32px rgba(0,122,255,0.4);
-      position: relative; overflow: hidden;
-    }
-    .btn-submit:disabled { opacity: 0.7; cursor: not-allowed; }
-    .btn-submit::before {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-      transform: translateX(-100%);
-      transition: transform 0.6s ease;
-    }
-    .btn-submit:hover::before { transform: translateX(100%); }
-    .btn-submit:hover {
-      box-shadow: 0 16px 60px rgba(0,122,255,0.7);
-      transform: translateY(-3px) scale(1.01);
-    }
-
-    @media (max-width: 1024px) {
-      .contact-wrap { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .form-grid { grid-template-columns: 1fr; }
-      .contact-left, .contact-right { padding: 40px 32px; }
-    }
-  </style>
+        @media (max-width: 1024px) { .contact-wrap { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { .nav-links { display: none; } .form-grid { grid-template-columns: 1fr; } }
+    </style>
 </head>
 
 <body>
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
 
-  <nav id="navbar">
-    <div class="nav-inner">
-      <a href="#" class="logo">
-        <div class="logo-bars"><span></span><span></span><span></span></div>
-        <div class="logo-text">DIGI<span class="accent">GENIE</span></div>
-      </a>
-      <ul class="nav-links">
-        <li><a href="#contact" class="nav-cta">Start Growing</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="section-inner">
-      <div class="reveal" style="text-align:center">
-        <div class="section-tag">Get In Touch</div>
-        <h2 class="section-title">LET'S <span class="colored">CONNECT</span></h2>
-      </div>
-
-      <div class="contact-wrap reveal">
-        <div class="contact-left">
-          <div class="contact-left-title">REACH<br>OUT.</div>
-          <div class="contact-info-item">
-            <div class="contact-info-label">// WhatsApp</div>
-            <div class="contact-info-value">+91-93398-12593</div>
-          </div>
-          <div class="contact-info-item">
-            <div class="contact-info-label">// Email</div>
-            <div class="contact-info-value" style="font-size:13px">digigenie.business@gmail.com</div>
-          </div>
-          <div class="contact-info-item">
-            <div class="contact-info-label">// Location</div>
-            <div class="contact-info-value">Global Growth Empire</div>
-          </div>
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="logo">
+                <div class="logo-bars"><span></span><span></span><span></span></div>
+                <div class="logo-text">DIGI<span class="accent">GENIE</span></div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#contact" class="nav-cta">Start Growing</a></li>
+            </ul>
         </div>
+    </nav>
 
-        <div class="contact-right">
-          <div class="contact-form-title">LET US<br><span>REACH YOU.</span></div>
-
-          <!-- ✅ FIXED FORM -->
-          <form id="contactForm" class="form-grid">
-            <div class="form-group">
-              <label class="form-label">Full Name</label>
-              <input id="fullName" name="fullName" type="text" placeholder="John Doe" class="form-input" required>
+    <section id="contact">
+        <div class="section-inner" style="padding-top:120px;">
+            <div style="text-align:center">
+                <div class="section-tag">Get In Touch</div>
+                <h2 class="section-title">LET'S <span style="color:var(--blue)">CONNECT</span></h2>
             </div>
 
-            <div class="form-group">
-              <label class="form-label">Contact Number</label>
-              <input id="phone" name="phone" type="tel" placeholder="+91 00000 00000" class="form-input" required>
-            </div>
+            <div class="contact-wrap">
+                <div class="contact-left">
+                    <div class="contact-left-title">REACH<br>OUT.</div>
 
-            <div class="form-group full">
-              <label class="form-label">Business Email</label>
-              <input id="email" name="email" type="email" placeholder="you@company.com" class="form-input" required>
-            </div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-label">// WhatsApp</div>
+                        <div class="contact-info-value">+91-93398-12593</div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-label">// Email</div>
+                        <div class="contact-info-value" style="font-size:13px">digigenie.business@gmail.com</div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-label">// Location</div>
+                        <div class="contact-info-value">Global Growth Empire</div>
+                    </div>
+                </div>
 
-            <div class="form-group full">
-              <label class="form-label">Service Required</label>
-              <select id="service" name="service" class="form-input" required>
-                <option value="">Select a service…</option>
-                <option>Website Building</option>
-                <option>Social Video Creation</option>
-                <option>Instagram Optimization</option>
-                <option>Google Business (GMB)</option>
-                <option>Business Site Registration</option>
-                <option>Others</option>
-              </select>
-            </div>
+                <div class="contact-right">
+                    <div class="contact-form-title">LET US<br><span>REACH YOU.</span></div>
 
-            <div class="form-group full">
-              <label class="form-label">Message</label>
-              <textarea id="message" name="message" rows="4" placeholder="How can we help you grow?"
-                class="form-input" style="resize:none" required></textarea>
-            </div>
+                    <!-- ✅ FINAL WORKING FORM -->
+                    <form id="contactForm" class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Full Name</label>
+                            <input id="fullName" name="fullName" type="text" placeholder="John Doe" class="form-input" required>
+                        </div>
 
-            <div class="form-group full">
-              <button type="submit" class="btn-submit" id="submitBtn">Launch Project →</button>
-            </div>
-          </form>
-          <!-- ✅ /FIXED FORM -->
+                        <div class="form-group">
+                            <label class="form-label">Contact Number</label>
+                            <input id="contactNumber" name="contactNumber" type="tel" placeholder="+91 00000 00000" class="form-input" required>
+                        </div>
 
+                        <div class="form-group full">
+                            <label class="form-label">Business Email</label>
+                            <input id="businessEmail" name="businessEmail" type="email" placeholder="you@company.com" class="form-input" required>
+                        </div>
+
+                        <div class="form-group full">
+                            <label class="form-label">Service Required</label>
+                            <select id="serviceRequired" name="serviceRequired" class="form-input" required>
+                                <option value="">Select a service…</option>
+                                <option>Website Building</option>
+                                <option>Social Video Creation</option>
+                                <option>Instagram Optimization</option>
+                                <option>Google Business (GMB)</option>
+                                <option>Business Site Registration</option>
+                                <option>Others</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full">
+                            <label class="form-label">Message</label>
+                            <textarea id="message" name="message" rows="4" placeholder="How can we help you grow?" class="form-input" style="resize:none" required></textarea>
+                        </div>
+
+                        <div class="form-group full">
+                            <button type="submit" class="btn-submit" id="submitBtn">Launch Project →</button>
+                        </div>
+                    </form>
+                    <!-- ✅ /FINAL WORKING FORM -->
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <script>
-    /* CURSOR */
-    const cursor = document.getElementById('cursor');
-    const ring = document.getElementById('cursorRing');
-    let mx = 0, my = 0, rx = 0, ry = 0;
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX; my = e.clientY;
-      cursor.style.left = mx - 7 + 'px';
-      cursor.style.top = my - 7 + 'px';
-    });
-    function animRing() {
-      rx += (mx - rx - 22) * 0.1;
-      ry += (my - ry - 22) * 0.1;
-      ring.style.left = rx + 'px';
-      ring.style.top = ry + 'px';
-      requestAnimationFrame(animRing);
-    }
-    animRing();
+    <script>
+        /* CURSOR */
+        const cursor = document.getElementById('cursor');
+        const ring = document.getElementById('cursorRing');
+        let mx = 0, my = 0, rx = 0, ry = 0;
 
-    document.querySelectorAll('a,button').forEach(el => {
-      el.addEventListener('mouseenter', () => { cursor.classList.add('hovering'); ring.classList.add('hovering'); });
-      el.addEventListener('mouseleave', () => { cursor.classList.remove('hovering'); ring.classList.remove('hovering'); });
-    });
-
-    /* NAVBAR */
-    window.addEventListener('scroll', () => {
-      document.getElementById('navbar').classList.toggle('scrolled', scrollY > 50);
-    });
-
-    /* REVEAL */
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-    /* ✅ GOOGLE SHEETS SUBMIT (Apps Script Web App) */
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxnwIEIMgnHKRGVLqPiQQv2n2DVYYXcWTkw_MFBaxjDzecbZANwtRG-a8PydSG16B-sOw/exec"; // <-- paste your deployed Apps Script web app URL
-
-    const form = document.getElementById("contactForm");
-    const submitBtn = document.getElementById("submitBtn");
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      if (!SCRIPT_URL || SCRIPT_URL.includes("PASTE_YOUR_WEB_APP_URL_HERE")) {
-        alert("Please paste your Google Apps Script Web App URL in SCRIPT_URL.");
-        return;
-      }
-
-      submitBtn.disabled = true;
-      const oldText = submitBtn.textContent;
-      submitBtn.textContent = "Sending...";
-
-      const payload = {
-        fullName: document.getElementById("fullName").value.trim(),
-        phone: document.getElementById("phone").value.trim(),
-        email: document.getElementById("email").value.trim(),
-        service: document.getElementById("service").value,
-        message: document.getElementById("message").value.trim(),
-        source: "digigenie-site"
-      };
-
-      try {
-        const res = await fetch(SCRIPT_URL, {
-          method: "POST",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify(payload)
+        document.addEventListener('mousemove', e => {
+            mx = e.clientX; my = e.clientY;
+            cursor.style.left = (mx - 7) + 'px';
+            cursor.style.top = (my - 7) + 'px';
         });
 
-        const json = await res.json();
-
-        if (json.ok) {
-          submitBtn.textContent = "Submitted ✅";
-          form.reset();
-          setTimeout(() => {
-            submitBtn.disabled = false;
-            submitBtn.textContent = oldText;
-          }, 1500);
-        } else {
-          alert("Submission failed: " + (json.error || "Unknown error"));
-          submitBtn.disabled = false;
-          submitBtn.textContent = oldText;
+        function animRing() {
+            rx += (mx - rx - 22) * 0.1;
+            ry += (my - ry - 22) * 0.1;
+            ring.style.left = rx + 'px';
+            ring.style.top = ry + 'px';
+            requestAnimationFrame(animRing);
         }
+        animRing();
 
-      } catch (err) {
-        alert("Network error: " + err.message);
-        submitBtn.disabled = false;
-        submitBtn.textContent = oldText;
-      }
-    });
-  </script>
+        document.querySelectorAll('a,button').forEach(el => {
+            el.addEventListener('mouseenter', () => { cursor.classList.add('hovering'); ring.classList.add('hovering'); });
+            el.addEventListener('mouseleave', () => { cursor.classList.remove('hovering'); ring.classList.remove('hovering'); });
+        });
+
+        /* NAVBAR */
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', scrollY > 50);
+        });
+
+        /* ✅ GOOGLE SHEETS SUBMIT */
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzhj9RZ6e7ypT0xSXpAFi55wdPqAtzdlqR237p27_If8miqp5E0eR5USafznSfNEZqo0w/exec";
+
+        const form = document.getElementById("contactForm");
+        const submitBtn = document.getElementById("submitBtn");
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            submitBtn.disabled = true;
+            const oldText = submitBtn.textContent;
+            submitBtn.textContent = "Sending...";
+
+            const payload = {
+                fullName: document.getElementById("fullName").value.trim(),
+                contactNumber: document.getElementById("contactNumber").value.trim(),
+                businessEmail: document.getElementById("businessEmail").value.trim(),
+                serviceRequired: document.getElementById("serviceRequired").value,
+                message: document.getElementById("message").value.trim()
+            };
+
+            try {
+                const res = await fetch(SCRIPT_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "text/plain;charset=utf-8" },
+                    body: JSON.stringify(payload)
+                });
+
+                const json = await res.json();
+
+                if (json.ok) {
+                    submitBtn.textContent = "Submitted ✅";
+                    form.reset();
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = oldText;
+                    }, 1500);
+                } else {
+                    alert("Submission failed: " + (json.error || "Unknown error"));
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = oldText;
+                }
+
+            } catch (err) {
+                alert("Network error: " + err.message);
+                submitBtn.disabled = false;
+                submitBtn.textContent = oldText;
+            }
+        });
+    </script>
 </body>
 </html>
