@@ -854,6 +854,23 @@
             box-shadow: 0 16px 60px rgba(0,122,255,0.7);
             transform: translateY(-3px) scale(1.01);
         }
+        .btn-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: 0 8px 24px rgba(0,122,255,0.25);
+        }
+        .form-status {
+            grid-column: 1/-1;
+            min-height: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+        .form-status.success { color: #52d980; }
+        .form-status.error { color: #ff7670; }
 
         /* ═══════════════════════════════════════
            FOOTER
@@ -1304,38 +1321,39 @@
                 </div>
                 <div class="contact-right">
                     <div class="contact-form-title">LET US<br><span>REACH YOU.</span></div>
-                    <form class="form-grid" onsubmit="return false;">
+                    <form id="contactForm" class="form-grid" data-endpoint="">
                         <div class="form-group">
                             <label class="form-label">Full Name</label>
-                            <input type="text" placeholder="John Doe" class="form-input">
+                            <input type="text" name="name" placeholder="John Doe" class="form-input" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Contact Number</label>
-                            <input type="tel" placeholder="+91 00000 00000" class="form-input">
+                            <input type="tel" name="phone" placeholder="+91 00000 00000" class="form-input" required>
                         </div>
                         <div class="form-group full">
                             <label class="form-label">Business Email</label>
-                            <input type="email" placeholder="you@company.com" class="form-input">
+                            <input type="email" name="email" placeholder="you@company.com" class="form-input" required>
                         </div>
                         <div class="form-group full">
                             <label class="form-label">Service Required</label>
-                            <select class="form-input">
+                            <select name="service" class="form-input" required>
                                 <option value="">Select a service…</option>
-                                <option>Website Building</option>
-                                <option>Social Video Creation</option>
-                                <option>Instagram Optimization</option>
-                                <option>Google Business (GMB)</option>
-                                <option>Business Site Registration</option>
-                                <option>Others</option>
+                                <option value="Website Building">Website Building</option>
+                                <option value="Social Video Creation">Social Video Creation</option>
+                                <option value="Instagram Optimization">Instagram Optimization</option>
+                                <option value="Google Business (GMB)">Google Business (GMB)</option>
+                                <option value="Business Site Registration">Business Site Registration</option>
+                                <option value="Others">Others</option>
                             </select>
                         </div>
                         <div class="form-group full">
                             <label class="form-label">Message</label>
-                            <textarea rows="4" placeholder="How can we help you grow?" class="form-input" style="resize:none"></textarea>
+                            <textarea rows="4" name="message" placeholder="How can we help you grow?" class="form-input" style="resize:none" required></textarea>
                         </div>
                         <div class="form-group full">
                             <button type="submit" class="btn-submit">Launch Project →</button>
                         </div>
+                        <p id="formStatus" class="form-status" aria-live="polite"></p>
                     </form>
                 </div>
             </div>
@@ -1434,9 +1452,11 @@
             el.dataset.suffix = el.closest('.hero-stat-label') ? '' : (el.textContent.includes('%') ? '%' : '+');
             counterObs.observe(el);
         });
-        // Fix suffix for first stat
-        document.querySelector('[data-target="200"]').dataset.suffix = '+';
-        document.querySelector('[data-target="100"]').dataset.suffix = '%';
+        // Keep this safe: only assign suffix when target element exists.
+        const stat40 = document.querySelector('[data-target="40"]');
+        const stat100 = document.querySelector('[data-target="100"]');
+        if (stat40) stat40.dataset.suffix = '+';
+        if (stat100) stat100.dataset.suffix = '%';
 
         /* ═══════════════════════ FLOATING PARTICLES ═══════════════════════ */
         const colors = ['#007AFF','#FF3B30','#34C759','#FFCC00'];
@@ -1458,6 +1478,78 @@
                 position:fixed; border-radius:50%; pointer-events:none; z-index:1;
             `;
             container.appendChild(p);
+        }
+
+        /* ═══════════════════════ CONTACT FORM ═══════════════════════ */
+        const contactForm = document.getElementById('contactForm');
+        const formStatus = document.getElementById('formStatus');
+        // Paste your Google Apps Script Web App URL here (must end with /exec),
+        // or set it on the form tag with data-endpoint="...".
+        const CONTACT_FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzrE9v-zIBGjcbYr0CSdrS0Kz0vzPzwYQqDy3_TDhk48C9PfqQrNFTfPSCM9iaJqoId/exec';
+
+        if (contactForm && formStatus) {
+            contactForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const endpoint = (
+                    contactForm.dataset.endpoint ||
+                    CONTACT_FORM_ENDPOINT
+                ).trim();
+
+                if (!endpoint) {
+                    formStatus.className = 'form-status error';
+                    formStatus.textContent = 'Add your form endpoint in CONTACT_FORM_ENDPOINT or data-endpoint.';
+                    return;
+                }
+
+                const submitBtn = contactForm.querySelector('.btn-submit');
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+                formStatus.className = 'form-status';
+                formStatus.textContent = '';
+
+                try {
+                    const name = contactForm.elements.name.value.trim();
+                    const phone = contactForm.elements.phone.value.trim();
+                    const email = contactForm.elements.email.value.trim();
+                    const service = contactForm.elements.service.value.trim();
+                    const message = contactForm.elements.message.value.trim();
+                    const nowIso = new Date().toISOString();
+                    const payload = {
+                        // Exact keys expected by your doPost(e) implementation.
+                        FULLNAME: name,
+                        CONTACTNUMBER: phone,
+                        BUSSINESSEMAIL: email,
+                        SERVICEREQUIRED: service,
+                        MESSAGE: message,
+                        // Helpful metadata / aliases
+                        name,
+                        phone,
+                        email,
+                        service,
+                        message,
+                        submitted_at: nowIso,
+                        source: 'website'
+                    };
+
+                    await fetch(endpoint, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    contactForm.reset();
+                    formStatus.className = 'form-status success';
+                    formStatus.textContent = 'Thank you. Your message has been sent.';
+                } catch (err) {
+                    formStatus.className = 'form-status error';
+                    formStatus.textContent = 'Submission failed. Please try again.';
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Launch Project →';
+                }
+            });
         }
 
         /* ═══════════════════════ MODAL ═══════════════════════ */
