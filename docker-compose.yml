@@ -1,0 +1,15 @@
+services:
+  db:
+    image: timescale/timescaledb:latest-pg16
+    container_name: mmi-timescale
+    environment:
+      POSTGRES_DB: mmi_dashboard
+      POSTGRES_USER: mmi_user
+      POSTGRES_PASSWORD: mmi_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - mmi_db_data:/var/lib/postgresql/data
+
+volumes:
+  mmi_db_data:
